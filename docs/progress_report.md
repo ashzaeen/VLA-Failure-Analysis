@@ -1,7 +1,7 @@
 # Progress Report — Failure Analysis and Object Grounding in π0 (VLA) on LIBERO
 
 **Author:** Ashzaeen Fatmi Khan
-**Advisor:** the lab PI
+**Advisor:** Dr. William Beksi
 **Report date:** 2026-07-14
 **Model:** π0 (pi-zero) VLA · **Benchmark:** LIBERO-Object · **Environment:** `transformers 5.3.0`, `torch 2.7.1+cu128`, Python 3.12
 

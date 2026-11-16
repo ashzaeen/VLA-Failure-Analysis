@@ -134,7 +134,7 @@ If initial work is completed early or reveals a particularly valuable pattern, t
 - Improved grounding metrics
 - Preliminary methods for improving object grounding
 
-The exact direction will evolve in collaboration with the lab PI as results come in.
+The exact direction will evolve in collaboration with Dr. William Beksi as results come in.
 
 ---
 

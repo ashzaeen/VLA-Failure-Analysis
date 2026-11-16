@@ -1,6 +1,6 @@
 # Progress Update — New (Clean) Baseline and Brightness Perturbations
 
-**Author:** Ashzaeen Fatmi Khan · **Advisor:** the lab PI
+**Author:** Ashzaeen Fatmi Khan · **Advisor:** Dr. William Beksi
 **Date:** 2026-07-14 · **Model:** π0 (VLA) · **Benchmark:** LIBERO-Object
 
 ---
