@@ -1,0 +1,23 @@
+server:
+  host: 0.0.0.0
+  port: 8001
+  device: cuda
+  dtype: float16
+  log_level: INFO
+
+policies:
+  - policy_id: pi0
+    policy_type: pi0
+    checkpoint_path: vlas/checkpoints/rvl_ur5_task1_4_pick
+    model_id: amylingchen/rvl_ur5_task1_4_pick
+    unnorm_key: ur5
+    output_attentions: false
+    input:
+      image_keys:
+        - observation.images.image1
+        - observation.images.image2
+      state_key: observation.state
+      task_key: task
+    output:
+      action_dim: 7
+      action_horizon: 8

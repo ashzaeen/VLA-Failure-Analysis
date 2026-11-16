@@ -1,0 +1,23 @@
+mydatasets/
+openvla-7b-oft-finetuned-libero-object/
+pi0_base/
+pi0_libero_base/
+pi0_libero_finetuned_v044/
+output/
+.vscode/
+.history/
+.idea/
+*.log
+outputs/
+__pycache__/
+pi0_ur5_rvl*/
+pi0_ur5_rvl/
+pi0_ur5*/
+rvl_ur5_task*/
+safe/
+joint_data/
+vlas/lerobot/tests/artifacts/
+
+# analysis/safe is real code, not the ignored scratch "safe/" dir
+!analysis/safe/
+!analysis/safe/**

@@ -1,0 +1,30 @@
+# VERIFIED WORKING ENVIRONMENT — π0 / LIBERO policy server (env `vla-pi0-lab`)
+#
+# These are the versions that reproduce the lab baseline (91/100 on LIBERO-Object,
+# 2026-07-02). The SINGLE most important pin is transformers==5.3.0 — see below.
+#
+# WHY THIS FILE EXISTS:
+#   vlas/lerobot/requirements-ubuntu.txt pins transformers==4.57.1, which is STALE and
+#   WRONG: the pi0 vision code (`embed_image` -> `image_outputs.pooler_output`) needs
+#   transformers 5.x and crashes on 4.57.1. Meanwhile vlas/lerobot/pyproject.toml allows
+#   `transformers>=5.3.0,<6.0.0`, so a plain install resolves to the LATEST 5.x (e.g.
+#   5.12.1) — which loads the SigLIP vision tower with the wrong key layout and silently
+#   degrades vision -> ~10/100 success. transformers==5.3.0 is the version where the
+#   checkpoint's `vision_tower.vision_model.*` keys load natively (0 missing keys) AND the
+#   groot / pi_gemma code paths still work. See docs/stage1_issues_and_reproduction.md.
+#
+# Python 3.12. Install torch from the cu128 index to match the A40 driver:
+#   pip install torch==2.7.1 torchvision==0.22.1 --index-url https://download.pytorch.org/whl/cu128
+#   pip install -e "vlas/lerobot[pi]"        # pulls deps (installs a newer transformers)
+#   pip install transformers==5.3.0 tokenizers==0.22.1   # <-- override to the working version
+#   pip install fastapi "uvicorn[standard]" pyyaml matplotlib
+
+transformers==5.3.0
+torch==2.7.1
+torchvision==0.22.1
+tokenizers==0.22.1
+numpy==2.2.6
+accelerate==1.11.0
+safetensors==0.6.2
+# NOTE: transformers 5.3.0 pulls huggingface-hub 1.x (observed 1.21.0); leave it unpinned
+# so transformers resolves a compatible version.

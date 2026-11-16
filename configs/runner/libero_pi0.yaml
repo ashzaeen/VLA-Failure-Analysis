@@ -1,0 +1,51 @@
+experiment:
+  name: libero_pi0_eval                # Human-readable name for this evaluation run.
+  seed: 1                              # Random seed used for environment and evaluation reproducibility.
+  output_dir: outputs/libero_object_eval_4_embeds  # Directory for episode data, videos, and results.
+
+env:
+  task_suite: libero_object            # LIBERO suite to evaluate, such as libero_object or libero_goal.
+  resolution: 256                      # Camera rendering width and height in pixels.
+  max_steps: 500                       # Maximum number of policy-controlled steps per episode.
+  num_trials_per_task: 50              # Number of episodes to run for each task.
+  num_steps_wait: 10                   # Number of dummy-action steps before policy execution starts.
+  render: false                        # Reserved rendering flag; currently not consumed by LiberoEvaluator.
+
+observation:
+  image_size: 256                      # Intended policy input image size; resizing is currently disabled.
+  image_keys:                          # LIBERO camera observation keys sent to the policy server.
+    - agentview
+    - robot0_eye_in_hand
+  rotate_180: true                     # Whether to rotate each input image by 180 degrees.
+  use_proprio: true                    # Reserved proprio flag; proprio is currently always included.
+  state_dim: 8                         # Reserved expected proprio dimension; currently not validated.
+  alpha: 1                             # Image contrast multiplier applied before sending observations.
+  beta: 30                             # Image brightness offset applied before sending observations.
+  test_zero_proprio: false             # Whether to replace the observed proprio state with a fixed test state.
+
+robot:
+  action_scale: 1.0 
+  normalize_gripper: true 
+  invert_gripper: false  
+  binarize_gripper: true 
+
+policy_client:
+  base_url: http://127.0.0.1:8001      # Base URL of the remote policy server.
+  timeout_seconds: 300 
+  policy_id: pi0                       # Policy identifier passed to the /predict endpoint.
+  use_chunk: true                      # Whether to consume multiple actions from each predicted action chunk.
+  replan_threshold: 1                  # Request a new chunk when the remaining action count reaches this value.
+  run_steps: 20                        # Number of actions consumed from each server response.
+  batch_size: 3                        # Batch size requested from the policy server.
+
+  ## Optional flags for requesting additional data from the policy server. Enabling these may increase response time and computational load.
+  include_attentions: true             # Whether the server should return action attention data.
+  include_nll: false                   # Whether the server should calculate and return NLL data.
+  nll_hutchinson_samples: 5            # Number of Hutchinson samples used for NLL estimation.
+  include_obs_embs: false              # Whether the server should return observation embeddings.
+
+logging:
+  save_rollout_video: true             # Whether to save front-camera rollout videos.
+  save_attention: true                 # Reserved attention logging flag; currently not read by LiberoEvaluator.
+  save_logs: true                      # Reserved runtime logging flag; currently not read by LiberoEvaluator.
+  save_episode_npz: true               # Whether to save one compressed NPZ file for each episode trajectory.
