@@ -1,0 +1,6 @@
+item,value,source_report
+conditions,"11 (offset 0, 10, ... 100), 100 episodes each, same seed",week-09_2026-07-10.pdf
+success_range_pct,86-96,week-09_2026-07-10.pdf
+success_at_offset_100,92/100,week-09_2026-07-10.pdf
+success_at_offset_30,92/100,week-09_2026-07-10.pdf
+attention_trend,progressively more concentrated; peaks around offsets 70-80,week-09_2026-07-10.pdf

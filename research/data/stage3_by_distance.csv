@@ -1,0 +1,9 @@
+condition,displacement_cm,successes,episodes,success_rate_pct,source
+move_target_only,0,16,20,80,counted from clip file names in evidence/stage3-videos (no-op anchor)
+move_target_only,5,2,20,10,counted from clip file names in evidence/stage3-videos
+move_target_only,10,1,20,5,counted from clip file names in evidence/stage3-videos
+move_target_only,15,0,20,0,counted from clip file names in evidence/stage3-videos
+move_distractors_only,5,20,20,100,counted from clip file names in evidence/stage3-videos
+move_distractors_only,10,19,20,95,counted from clip file names in evidence/stage3-videos
+move_distractors_only,15,17,20,85,counted from clip file names in evidence/stage3-videos
+swap_target_and_distractor,n/a,0,20,0,counted from clip file names in evidence/stage3-videos

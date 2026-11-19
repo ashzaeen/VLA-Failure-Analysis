@@ -1,5 +1,7 @@
 # VLA Failure Analysis
 
+> **Research results:** this repository also holds the study's findings, evidence and reports. Start with [`research/REPORT.md`](research/REPORT.md) or the [research index](research/README.md).
+
 This project supports data collection and data analysis for LeRobot models.
 
 - **Data collection**: Start the LeRobot model server, execute configured tasks in
