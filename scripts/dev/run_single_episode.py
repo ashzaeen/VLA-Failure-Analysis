@@ -16,8 +16,8 @@ from src.utils.logger import get_logger
 
 from src.utils.pi0_attention_utils import AnalysisConfig, analyze_single_image_attention
 from src.utils.video_utils import images_to_video
-from robots.LiberoInference import LiberoInference
-from robots.liberoInferenceCfg import LiberoConfig
+from robots.libero_inference import LiberoInference
+from robots.libero_inference_cfg import LiberoConfig
 
 
 

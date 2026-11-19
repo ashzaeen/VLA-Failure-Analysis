@@ -11,7 +11,7 @@ sys.path.append("../..")
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 
-from robots.LiberoArm import LiberoRobotArm
+from robots.libero_arm import LiberoRobotArm
 from src.runner.libero.libero_utils import get_libero_env, resize_image, save_rollout_video, resize_with_pad, \
     convert_to_uint8
 import gc
@@ -24,7 +24,7 @@ from PIL import Image
 from src.utils.pi0_attention_utils import AnalysisConfig, analyze_single_image_attention
 from src.utils.video_utils import images_to_video
 from datasets import load_dataset
-from robots.liberoInferenceCfg import LiberoConfig
+from robots.libero_inference_cfg import LiberoConfig
 
 
 logger = get_logger(__name__)

@@ -52,7 +52,7 @@ Two rules ran through everything. **Attention is a clue, not proof**: a heat map
 
 The first run of the lab's pipeline scored **10 / 100**. Nothing in the logs said why. The cause was a single wrong software version (`transformers 5.12.1`): part of the model's vision system **silently loaded random numbers instead of its trained weights**, so the robot was effectively reaching from memory. Pinning `transformers 5.3.0` fixed it and the score recovered to **91 / 100**. The clean baseline settled at **87 / 100**.
 
-*Evidence: [`data/baselines.csv`](data/baselines.csv), the original broken run in [`evidence/stage1-broken-baseline/`](evidence/stage1-broken-baseline/), and [`../docs/stage1_issues_and_reproduction.md`](../docs/stage1_issues_and_reproduction.md).*
+*Evidence: [`data/baselines.csv`](data/baselines.csv), the original broken run in [`evidence/stage1-broken-baseline/`](evidence/stage1-broken-baseline/), and [`docs/project-log/stage-1-reproduction-log.md`](../docs/project-log/stage-1-reproduction-log.md).*
 
 ### 2. Messing with the picture barely matters
 
@@ -85,7 +85,7 @@ Heat maps of the model's attention told a surprising story, object by object (10
 
 It also worked in both directions. Under arm-state noise the attention pattern stayed **identical** while behavior collapsed. Under contrast changes the attention swung about **tenfold** while behavior stayed **unchanged**. Task success does not track attention either way.
 
-*Evidence: [`data/attention_audit.csv`](data/attention_audit.csv), the contact sheets and clips in [`../report_videos/`](../report_videos/), and [`../docs/how_to_read_attention_videos.md`](../docs/how_to_read_attention_videos.md).*
+*Evidence: [`data/attention_audit.csv`](data/attention_audit.csv), the contact sheets and clips in [`evidence/attention-audit/`](evidence/attention-audit/), and [`docs/guides/reading-attention-videos.md`](../docs/guides/reading-attention-videos.md).*
 
 ### 5. Rearranging the table breaks it, and shows why
 
@@ -135,7 +135,7 @@ See the [research index](README.md) for the full map. In brief:
 |---|---|
 | Read the full technical write-up | [`reports/`](reports/) |
 | See the raw numbers | [`data/`](data/) |
-| Watch the experiments | [`evidence/stage3-videos/`](evidence/stage3-videos/) and [`../report_videos/`](../report_videos/) |
+| Watch the experiments | [`evidence/stage3-videos/`](evidence/stage3-videos/) and [`evidence/attention-audit/`](evidence/attention-audit/) |
 | Follow the week-by-week story | [`progress-reports/`](progress-reports/) |
 | See the final presentation | [`presentation/`](presentation/) |
-| Reproduce the pipeline | the repository [README](../README.MD) and [`../docs/`](../docs/) |
+| Reproduce the pipeline | the repository [README](../README.md) and [`../docs/`](../docs/) |

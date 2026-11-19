@@ -4,7 +4,7 @@ This document describes the environment setup, model configuration, and startup
 procedure for the LeRobot model server.
 
 For LIBERO client environment setup and startup instructions, see
-[`docs/libero.md`](libero.md).
+[`docs/setup/client-setup.md`](client-setup.md).
 
 All commands assume the project root directory:
 
@@ -60,11 +60,11 @@ resolution has not changed the current server behavior.
 - The server and client communicate through the objectVLA `/predict` control
   protocol.
 - The LIBERO client uses a separate environment. See
-  [`docs/libero.md`](libero.md) for setup and startup instructions.
+  [`docs/setup/client-setup.md`](client-setup.md) for setup and startup instructions.
 
 ### Configuration File
 
-- Server: `configs/server/pi0_libero_finetuned_v044_server.yaml`
+- Server: `configs/server/pi0_libero_finetuned_v044.yaml`
 
 ### Model Download
 
@@ -96,7 +96,7 @@ conda activate lerobot
 export PYTHONPATH="${VLA_FAILURE_ANALYSIS_ROOT}"
 
 python scripts/run_policy_server.py \
-  --config configs/server/pi0_libero_finetuned_v044_server.yaml
+  --config configs/server/pi0_libero_finetuned_v044.yaml
 ```
 
 By default, the server listens on `127.0.0.1:8001`.
@@ -104,7 +104,7 @@ By default, the server listens on `127.0.0.1:8001`.
 ### Start the Client
 
 For client configuration and startup commands, see
-[`docs/libero.md`](libero.md).
+[`docs/setup/client-setup.md`](client-setup.md).
 
 ## LeRobot + UR5
 

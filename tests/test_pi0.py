@@ -6,8 +6,8 @@ from lerobot.policies.factory import make_pre_post_processors
 
 import psutil
 
-from robots.liberoInferenceCfg import LiberoConfig
-from robots.LiberoInference import LiberoInference
+from robots.libero_inference_cfg import LiberoConfig
+from robots.libero_inference import LiberoInference
 from src.models.pi0.pi0_model import PI0Model
 
 # os.environ["MUJOCO_GL"] = "osmesa"

@@ -24,4 +24,4 @@ The model survived having **objects** moved but not the **robot or camera**, whi
 | [`code/run_robustness_eval.py`](code/run_robustness_eval.py) | Evaluation script: takes a task ID, perturbation type and intensity, and runs the LIBERO rollout |
 | [`code/perturbations.py`](code/perturbations.py) and [`code/perturbations.json`](code/perturbations.json) | Linguistic perturbations (verbosity, syntax, synonym) looked up per task |
 
-The scripts are kept as they were used in the spring; they depend on the LIBERO evaluation environment described in the main [README](../../README.MD).
+The scripts are kept as they were used in the spring; they depend on the LIBERO evaluation environment described in the main [README](../../README.md).

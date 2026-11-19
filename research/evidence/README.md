@@ -1,6 +1,12 @@
 # Evidence
 
-Primary evidence behind the reports. Additional attention clips from the clean baseline live in [`../../report_videos/`](../../report_videos/).
+Primary evidence behind the reports. Three folders:
+
+| Folder | Contents |
+|---|---|
+| [`stage1-broken-baseline/`](stage1-broken-baseline/) | The original 10/100 run caused by the silent dependency bug |
+| [`stage3-videos/`](stage3-videos/) | 160 rollout clips from the scene-perturbation experiments |
+| [`attention-audit/`](attention-audit/) | Four attention-heat-map clips (with [`captions.txt`](attention-audit/captions.txt)) and per-object contact sheets from the clean baseline; see [`../../docs/guides/reading-attention-videos.md`](../../docs/guides/reading-attention-videos.md) |
 
 ## `stage1-broken-baseline/`
 

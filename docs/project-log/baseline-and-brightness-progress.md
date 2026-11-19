@@ -45,7 +45,7 @@ The two are **within normal run-to-run variation** (~4/100), so removing the bri
 *(Context: this assumes the corrected pipeline. The pipeline previously scored only 10/100 due to a
 wrong `transformers` library version that loaded the vision encoder on random weights; fixing that
 to `transformers 5.3.0` is what recovered the ~90% baseline. Details in
-`docs/stage1_issues_and_reproduction.md`.)*
+`docs/project-log/stage-1-reproduction-log.md`.)*
 
 ---
 

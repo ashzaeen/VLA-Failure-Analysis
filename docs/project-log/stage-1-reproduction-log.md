@@ -77,7 +77,7 @@ difference. No baseline settings = no controlled experiments.
 
 **What we did.** We read the code to figure out exactly which settings it looks for, then
 wrote two clearly-commented config files:
-- `configs/server/pi0_libero_finetuned_v044_server.yaml` (server settings)
+- `configs/server/pi0_libero_finetuned_v044.yaml` (server settings)
 - `configs/runner/libero_pi0.yaml` (client settings; this also defines the "untouched"
   baseline, with all the perturbation knobs set to "do nothing")
 

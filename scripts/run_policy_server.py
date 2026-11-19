@@ -10,7 +10,7 @@ from src.server.configs import ServerConfig
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', default='configs/server/pi0_libero_finetuned_v044_server.yaml')
+    parser.add_argument('--config', default='configs/server/pi0_libero_finetuned_v044.yaml')
     args = parser.parse_args()
 
     config = ServerConfig.from_yaml(args.config)

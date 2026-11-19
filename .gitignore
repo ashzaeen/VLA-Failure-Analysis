@@ -21,3 +21,6 @@ vlas/lerobot/tests/artifacts/
 # analysis/safe is real code, not the ignored scratch "safe/" dir
 !analysis/safe/
 !analysis/safe/**
+
+# keep bytecode caches out everywhere, including analysis/safe
+**/__pycache__/

@@ -59,7 +59,7 @@ correct version the model scores:
 | | | | **Overall** | **91/100** | **10/100** |
 
 A full list of the pipeline defects found and fixed (8 in total, including two latent code
-bugs) is in `docs/stage1_issues_and_reproduction.md`. Resolving and documenting these is, per
+bugs) is in `docs/project-log/stage-1-reproduction-log.md`. Resolving and documenting these is, per
 the project plan, itself a Stage 1 research contribution.
 
 ---
@@ -83,7 +83,7 @@ into a **16×16 heatmap** over that view.
 - **peak patch location** — *where* the hottest patch is.
 
 Each episode also gets a **heatmap overlay video** (attention over base + wrist views, per
-timestep, with the peak patch circled). Guide to reading them: `docs/how_to_read_attention_videos.md`.
+timestep, with the peak patch circled). Guide to reading them: `docs/guides/reading-attention-videos.md`.
 
 **Important condition.** These runs keep the reference config's `beta = 30` brightness offset
 (a mild perturbation baked into every frame), matching the 91/100 baseline. A clean `beta = 0`
@@ -138,7 +138,7 @@ success.
 ### 3.4 Per-episode audit (all 10 trials of four objects)
 
 Beyond the aggregate metrics, every trial (10 each) of four objects was **visually audited**;
-the per-object contact sheets and the representative videos are under `report_videos/`
+the per-object contact sheets and the representative videos are under `research/evidence/attention-audit/`
 (`audit_contact_sheets/`). Counts are exact frequencies from that audit.
 
 - **Orange juice — grounding, 10/10.** The base-camera attention peak sits directly on the

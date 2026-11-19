@@ -1,6 +1,6 @@
 # Stage 3: Object-Position Perturbations
 
-Why the object-position experiments exist, what LIBERO-Object's scenes really look like, and how [`scene_perturbation.py`](../src/runner/libero/scene_perturbation.py) rearranges them. For how to run them, see [`stage2_stage3_tooling.md`](stage2_stage3_tooling.md).
+Why the object-position experiments exist, what LIBERO-Object's scenes really look like, and how [`scene_perturbation.py`](../../src/runner/libero/scene_perturbation.py) rearranges them. For how to run them, see [`sweeps-and-scene-tooling.md`](sweeps-and-scene-tooling.md).
 
 ## Why rearrange the scene?
 
@@ -8,7 +8,7 @@ Brightness, contrast and robot-state noise all act on the **observation** after 
 
 ## What LIBERO-Object actually contains
 
-Before writing any perturbation code, every object's pose was decoded across all 10 tasks and their 50 provided initial states (the script is [`tools/lab-server/introspect_libero_scene.py`](../tools/lab-server/introspect_libero_scene.py)). Three facts reframe the benchmark:
+Before writing any perturbation code, every object's pose was decoded across all 10 tasks and their 50 provided initial states (the script is [`tools/lab-server/introspect_libero_scene.py`](../../tools/lab-server/introspect_libero_scene.py)). Three facts reframe the benchmark:
 
 1. All 10 tasks lay their objects on the **same six (x, y) slots**, with the basket at the same place. Only the assignment of which object sits on which slot changes between tasks.
 2. Positional "randomization" across the 50 initial states is **at most 2 cm, and usually exactly 0**.
@@ -39,11 +39,11 @@ For the `move_*` modes the displacement direction is chosen per episode from a r
 
 ## Checking the rewrite is sound
 
-Moving an object by rewriting `qpos` only means something if it then rests stably. [`scripts/validate_scene_perturbation.py`](../scripts/validate_scene_perturbation.py) applies each condition, lets the simulator settle under dummy actions, and reports drift, falls and the closest pair. The reported experiments validated **42/42 condition-episodes** before any GPU time was spent.
+Moving an object by rewriting `qpos` only means something if it then rests stably. [`scripts/validate_scene_perturbation.py`](../../scripts/validate_scene_perturbation.py) applies each condition, lets the simulator settle under dummy actions, and reports drift, falls and the closest pair. The reported experiments validated **42/42 condition-episodes** before any GPU time was spent.
 
 ## Recording what the robot did
 
-A success rate says the policy failed; it does not say *how*. The evaluator now records each object's start and final position and lists the **objects the robot actually disturbed** (moved by 3 cm or more), with each object's role (target or distractor). [`scripts/analyze_scene_failures.py`](../scripts/analyze_scene_failures.py) turns that into one of four labels per episode:
+A success rate says the policy failed; it does not say *how*. The evaluator now records each object's start and final position and lists the **objects the robot actually disturbed** (moved by 3 cm or more), with each object's role (target or distractor). [`scripts/analyze_scene_failures.py`](../../scripts/analyze_scene_failures.py) turns that into one of four labels per episode:
 
 | Label | Meaning |
 |---|---|
@@ -54,4 +54,4 @@ A success rate says the policy failed; it does not say *how*. The evaluator now 
 
 ## What it showed
 
-With 20 episodes per condition, swapping the target with a distractor dropped success from **80% to 0/20**, with the robot grasping the decoy in 60% of episodes and touching the true target in 15%. Moving only the target by 5 cm dropped success to 10%, while moving distractors up to 15 cm left it at 85–100%. The numbers, clips and full discussion are in [`research/`](../research/README.md).
+With 20 episodes per condition, swapping the target with a distractor dropped success from **80% to 0/20**, with the robot grasping the decoy in 60% of episodes and touching the true target in 15%. Moving only the target by 5 cm dropped success to 10%, while moving distractors up to 15 cm left it at 85–100%. The numbers, clips and full discussion are in [`research/`](../../research/README.md).

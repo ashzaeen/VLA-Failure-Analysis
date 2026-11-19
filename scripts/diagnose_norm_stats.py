@@ -15,7 +15,7 @@ Run ON BENDER, from the repo root, with the pi0 env active:
     PYTHONPATH="$(pwd)" python scripts/diagnose_norm_stats.py \
         --checkpoint ./pi0_libero_finetuned_v044
 
-(Defaults match configs/server/pi0_libero_finetuned_v044_server.yaml.)
+(Defaults match configs/server/pi0_libero_finetuned_v044.yaml.)
 """
 from __future__ import annotations
 

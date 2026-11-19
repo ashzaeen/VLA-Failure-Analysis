@@ -68,7 +68,7 @@ weights**). The repo's own `requirements-ubuntu.txt` pin (`4.57.1`) is stale and
 `pyproject` floor `>=5.3.0` was the correct signal. See `requirements-working.txt`.
 
 ### 2.4 Other pipeline defects found and fixed
-Documented fully in `docs/stage1_issues_and_reproduction.md` (8 issues). Highlights: missing
+Documented fully in `docs/project-log/stage-1-reproduction-log.md` (8 issues). Highlights: missing
 config files, a transformers-5 import crash (groot dataclass), a gated-tokenizer blocker, an
 evaluator that only ran 2 of 10 tasks and mislabeled episodes, and a latent 5-vs-6 unpack bug that
 crashed the server whenever attention was requested. Resolving and documenting these is itself the
@@ -100,7 +100,7 @@ camera's 256 patch tokens, and reshape into a **16×16 heatmap**.
 **Per-frame metrics** (`scripts/analyze_attention.py`): **peak** (strength of the hottest patch —
 focus vs. spread), **entropy** (low = concentrated), Gini / top-k share, and peak-patch location.
 Each episode also gets a heatmap overlay **video**. Reading guide:
-`docs/how_to_read_attention_videos.md`.
+`docs/guides/reading-attention-videos.md`.
 
 **Caveat used throughout:** attention is a **diagnostic, not proof**. It is one layer, one head,
 mean-pooled; the model also has a wrist camera and learned motion. Attention flags hypotheses to
@@ -148,7 +148,7 @@ and failure-prone.)*
 
 ### 4.4 Per-trial audit (all 10 trials of four objects)
 Every trial (10 each) of four objects was **visually audited** (contact sheets in
-`report_videos/audit_contact_sheets/`). Exact frequencies:
+`research/evidence/attention-audit/audit_contact_sheets/`). Exact frequencies:
 
 - **Orange juice — grounding, 10/10.** Base-camera peak sits on the target bottle in **all 10**
   trials. Textbook grounding.
@@ -163,7 +163,7 @@ Every trial (10 each) of four objects was **visually audited** (contact sheets i
   split attention with a competing hotspot away from the target and the arm never reaching the
   carton, whereas successes concentrate more. Real but modest; clearest in the failed episode.
 
-Representative clips: `report_videos/1_orange_juice…`, `2_alphabet_soup…`, `3_chocolate_pudding…`,
+Representative clips: `research/evidence/attention-audit/1_orange_juice…`, `2_alphabet_soup…`, `3_chocolate_pudding…`,
 `4_milk…FAILURE.mp4`.
 
 ---
@@ -262,7 +262,7 @@ python scripts/analyze_attention.py --npz_dir outputs/<run>/episodes_npz \
 - `outputs/beta_sweep_attn/` — brightness sweep: `SWEEP_SUMMARY.csv` (the two curves), per-β
   `results.json` and per-step metrics CSVs. (Raw NPZs and 1,100 heatmap videos remain on the lab
   server; pulled on request.)
-- `report_videos/` — 4 representative clips + captions + all-10-trials audit contact sheets.
+- `research/evidence/attention-audit/` — 4 representative clips + captions + all-10-trials audit contact sheets.
 
-**Companion docs:** `stage1_issues_and_reproduction.md` (defect log), `attention_baseline_findings.md`
-(detailed findings), `how_to_read_attention_videos.md` (reading guide), `progress.md` (working log).
+**Companion docs:** `stage-1-reproduction-log.md` (defect log), `baseline-and-attention-findings.md`
+(detailed findings), `reading-attention-videos.md` (reading guide), `docs/project-log/baseline-reproduction-daily-log.md` (working log).

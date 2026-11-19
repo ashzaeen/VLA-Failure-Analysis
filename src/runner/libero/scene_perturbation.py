@@ -9,7 +9,7 @@ handed to ``env.set_init_state``, so the robot genuinely faces a rearranged tabl
 
 Why this matters for LIBERO-Object specifically
 -----------------------------------------------
-Introspection of the suite (see ``docs/stage3_object_position.md``) shows that all
+Introspection of the suite (see ``docs/guides/object-position-experiments.md``) shows that all
 10 tasks lay their 6 manipulable objects on the *same six* (x, y) slots, with a
 basket at (0, 0.26); only the object-to-slot assignment permutes. Position spread
 across the 50 provided init states is <=2 cm and usually exactly 0. The target

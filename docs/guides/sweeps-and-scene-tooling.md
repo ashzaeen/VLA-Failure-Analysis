@@ -1,8 +1,8 @@
 # Stage 2 and Stage 3 Tooling: Sweeps, Noise and Scene Perturbations
 
-How to run the controlled-perturbation experiments behind the findings in [`research/`](../research/README.md). This covers the single-factor **sweep driver**, the **proprioception-noise** option, the **scene-perturbation** system, and the helper scripts used on the lab server.
+How to run the controlled-perturbation experiments behind the findings in [`research/`](../../research/README.md). This covers the single-factor **sweep driver**, the **proprioception-noise** option, the **scene-perturbation** system, and the helper scripts used on the lab server.
 
-> These tools were developed on the lab's shared server (GPU server "bender") and added to this repository afterwards. They were run there, with the pinned environment from [`requirements-working.txt`](../requirements-working.txt). Everything in this guide compiles, but running it needs the model server, a GPU and the LIBERO client environment ([`lerobot.md`](lerobot.md), [`libero.md`](libero.md)).
+> These tools were developed on the lab's shared server (GPU server "bender") and added to this repository afterwards. They were run there, with the pinned environment from [`requirements-working.txt`](../../requirements-working.txt). Everything in this guide compiles, but running it needs the model server, a GPU and the LIBERO client environment ([`server-setup.md`](../setup/server-setup.md), [`client-setup.md`](../setup/client-setup.md)).
 
 ## The idea: one factor at a time
 
@@ -10,15 +10,15 @@ Every experiment changes **exactly one** setting and holds everything else, incl
 
 | Stage | What is perturbed | Knob | Where |
 |---|---|---|---|
-| 2 | Image brightness (additive offset) | `observation.beta` | [`observation_builder.py`](../src/runner/libero/observation_builder.py) |
+| 2 | Image brightness (additive offset) | `observation.beta` | [`observation_builder.py`](../../src/runner/libero/observation_builder.py) |
 | 2 | Image contrast (multiplicative gain) | `observation.alpha` | same |
 | 2 | Robot proprioceptive state (noise) | `observation.proprio_noise_std` | same |
 | 2 | Robot state frozen to a fixed pose | `observation.test_zero_proprio` | same |
-| 3 | **Object positions in the scene** | `scene.mode`, `scene.distance` | [`scene_perturbation.py`](../src/runner/libero/scene_perturbation.py) |
+| 3 | **Object positions in the scene** | `scene.mode`, `scene.distance` | [`scene_perturbation.py`](../../src/runner/libero/scene_perturbation.py) |
 
 ## The sweep driver
 
-[`scripts/run_sweep.py`](../scripts/run_sweep.py) loads a base runner YAML, overrides **one** parameter across a list of values, runs the LIBERO evaluator for each condition, and writes a per-condition success summary.
+[`scripts/run_sweep.py`](../../scripts/run_sweep.py) loads a base runner YAML, overrides **one** parameter across a list of values, runs the LIBERO evaluator for each condition, and writes a per-condition success summary.
 
 ```bash
 python scripts/run_sweep.py \
@@ -56,7 +56,7 @@ policy_client.include_attentions=true,policy_client.batch_size=1,policy_client.t
 logging.save_episode_npz=true,logging.save_rollout_video=true,logging.save_attention=true
 ```
 
-The shell wrappers that ran these on the lab server are in [`tools/lab-server/`](../tools/lab-server/README.md).
+The shell wrappers that ran these on the lab server are in [`tools/lab-server/`](../../tools/lab-server/README.md).
 
 ## Proprioception noise
 
@@ -70,7 +70,7 @@ PROPRIO_NOISE_REF = [0.02, 0.02, 0.02, 0.05, 0.05, 0.05, 0.005, 0.005]
 
 ## Scene perturbations (Stage 3)
 
-Stage 3 perturbs the **world** instead of the observation: object poses are rewritten inside the LIBERO initial state before the simulator adopts it, so the robot really faces a rearranged table. The full mechanics, and why LIBERO-Object needs this, are in [`stage3_object_position.md`](stage3_object_position.md). Configure it with the `scene:` block of [`configs/runner/libero_pi0_scene.yaml`](../configs/runner/libero_pi0_scene.yaml):
+Stage 3 perturbs the **world** instead of the observation: object poses are rewritten inside the LIBERO initial state before the simulator adopts it, so the robot really faces a rearranged table. The full mechanics, and why LIBERO-Object needs this, are in [`object-position-experiments.md`](object-position-experiments.md). Configure it with the `scene:` block of [`configs/runner/libero_pi0_scene.yaml`](../../configs/runner/libero_pi0_scene.yaml):
 
 | Setting | Meaning |
 |---|---|
@@ -105,8 +105,8 @@ Run the **no-op anchor first**. At distance 0 the scene is rewritten but not mov
 
 ### Two supporting scripts
 
-- [`scripts/validate_scene_perturbation.py`](../scripts/validate_scene_perturbation.py): a **physics sanity check** that needs no policy server. It applies each condition, lets the simulator settle, and reports drift, falls and the closest pair of objects, so a placement that floats or interpenetrates cannot silently confound a success rate. The reported runs passed 42/42 condition-episodes.
-- [`scripts/analyze_scene_failures.py`](../scripts/analyze_scene_failures.py): classifies each episode by **what the robot actually disturbed**: the `decoy` now sitting in the target's usual slot (the position-shortcut signature), the `target`, `other`, or `none`.
+- [`scripts/validate_scene_perturbation.py`](../../scripts/validate_scene_perturbation.py): a **physics sanity check** that needs no policy server. It applies each condition, lets the simulator settle, and reports drift, falls and the closest pair of objects, so a placement that floats or interpenetrates cannot silently confound a success rate. The reported runs passed 42/42 condition-episodes.
+- [`scripts/analyze_scene_failures.py`](../../scripts/analyze_scene_failures.py): classifies each episode by **what the robot actually disturbed**: the `decoy` now sitting in the target's usual slot (the position-shortcut signature), the `target`, `other`, or `none`.
 
 ## Output files
 
@@ -114,4 +114,4 @@ Each condition writes a folder with `results.json` (one record per episode, incl
 
 ## Where the results are
 
-All findings produced with these tools, as numbers, charts, clips and reports, are in [`research/`](../research/README.md). The 160 Stage 3 clips are in [`research/evidence/stage3-videos/`](../research/evidence/stage3-videos/).
+All findings produced with these tools, as numbers, charts, clips and reports, are in [`research/`](../../research/README.md). The 160 Stage 3 clips are in [`research/evidence/stage3-videos/`](../../research/evidence/stage3-videos/).
