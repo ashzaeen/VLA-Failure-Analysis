@@ -15,10 +15,39 @@ except Exception:  # pragma: no cover
     tf = None
 from src.common.mapping import LIBERO_ENV_IMAGE_MAPPING
 
+# Per-dimension reference scale for the 8-dim LIBERO proprio state
+# [eef_pos(x,y,z) in metres, eef axis-angle(3) in radians, gripper_qpos(2)].
+# proprio_noise_std multiplies this vector, so std=1.0 injects ~2 cm of positional
+# noise, ~0.05 rad of orientation noise, and ~0.005 of gripper noise (1 sigma) — a
+# meaningful but not destructive perturbation — while a single swept number keeps the
+# relative magnitude comparable across dimensions with very different native units.
+PROPRIO_NOISE_REF = np.array(
+    [0.02, 0.02, 0.02, 0.05, 0.05, 0.05, 0.005, 0.005], dtype=np.float32
+)
+
+
 @dataclass
 class LiberoObservationBuilder:
     cfg: ObservationConfig
     action_postprocessor: LiberoActionPostprocessor
+
+    def __post_init__(self) -> None:
+        # Dedicated RNG so the injected proprio noise is reproducible and independent of
+        # the global seed (which also drives the env/policy). Seeding this the same way
+        # across a sweep means only proprio_noise_std changes the perturbation magnitude.
+        self._proprio_rng = np.random.default_rng(self.cfg.proprio_noise_seed)
+
+    def _perturb_proprio(self, state: np.ndarray) -> np.ndarray:
+        std = float(self.cfg.proprio_noise_std)
+        if std <= 0.0:
+            return state
+        ref = PROPRIO_NOISE_REF
+        if state.shape[0] != ref.shape[0]:
+            # Fall back to a flat scale if the proprio layout is unexpected, so an
+            # unusual state_dim never silently drops the perturbation.
+            ref = np.full(state.shape[0], 0.02, dtype=np.float32)
+        noise = self._proprio_rng.standard_normal(state.shape[0]).astype(np.float32) * std * ref
+        return state + noise
 
     def _resize_image(self, image: np.ndarray, resize_size: tuple[int, int]) -> np.ndarray:
 
@@ -61,7 +90,9 @@ class LiberoObservationBuilder:
     def build(self, obs: Dict[str, np.ndarray], task_description: str, metadata: Dict | None = None) -> CanonicalObservation:
         images = self._extract_images(obs)
         encoded_images = encode_images(images)
-        state = self.action_postprocessor.preprocess_proprio(obs).tolist()
+        state_arr = self.action_postprocessor.preprocess_proprio(obs)
+        state_arr = self._perturb_proprio(state_arr)
+        state = state_arr.tolist()
         if self.cfg.test_zero_proprio:
             state = [-0.14997, 0.00026115, 0.26816, 3.1401, -0.0014931, -0.083721, 0.038787, -0.038789]
         # print(f'images = {images["agentview"].shape},{images["agentview"]}')

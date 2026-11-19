@@ -19,7 +19,7 @@ It contains (1) a pipeline that runs π0 in the LIBERO simulator and records eve
 3. [What was found](#what-was-found)
 4. [How the study was organized](#how-the-study-was-organized)
 5. [Repository map](#repository-map)
-6. [What is and isn't in this code snapshot](#what-is-and-isnt-in-this-code-snapshot)
+6. [What is in this code](#what-is-in-this-code)
 7. [Quick start: run the pipeline](#quick-start-run-the-pipeline)
 8. [Configuration reference](#configuration-reference)
 9. [What gets recorded](#what-gets-recorded)
@@ -111,18 +111,22 @@ Two rules run through every experiment. **Attention is a hypothesis, perturbatio
 │
 ├── configs/
 │   ├── server/                      Policy-server configs (π0 LIBERO, UR5)
-│   └── runner/libero_pi0.yaml       LIBERO client / experiment config
+│   └── runner/                      libero_pi0.yaml (client) and libero_pi0_scene.yaml (Stage 3)
 ├── scripts/
 │   ├── run_policy_server.py         Start the model server
 │   ├── run_libero_eval.py           Run the LIBERO evaluation client
+│   ├── run_sweep.py                 Single-factor sweep driver (contrast, brightness, proprio noise, scene)
 │   ├── analyze_attention.py         Attention metrics and heatmap videos from recorded episodes
+│   ├── validate_scene_perturbation.py  Physics sanity check for scene rewrites (no server needed)
+│   ├── analyze_scene_failures.py    Classify what the robot disturbed in each episode
 │   └── diagnose_norm_stats.py       Normalization diagnostics
 ├── src/
 │   ├── server/                      FastAPI server (/health, /predict) and adapters
-│   ├── runner/                      LIBERO evaluator, observation builder, policy client
+│   ├── runner/                      LIBERO evaluator, observation builder, scene perturbation, policy client
 │   ├── models/pi0/                  π0 model wrapper
 │   ├── common/ · utils/ · visualize/  Shared helpers, attention utilities, visualization
 ├── analysis/attention/              Attention analyzer: metrics, figures, configs
+├── tools/lab-server/                Run scripts used on the lab GPU server (sweeps, watcher, scene runs)
 ├── robots/                          Robot-arm and inference abstractions
 ├── notebook/                        Exploratory notebooks (π0, attention heatmaps, NLL, velocity)
 ├── test/                            Test and inspection scripts (model, predict API, LIBERO)
@@ -135,11 +139,16 @@ Two rules run through every experiment. **Attention is a hypothesis, perturbatio
 └── CLAUDE.md                        Project brief for AI coding assistants
 ```
 
-## What is and isn't in this code snapshot
+## What is in this code
 
-**Included:** the full two-process pipeline (policy server and LIBERO client), recording of every trajectory, the attention extraction and analysis tools, and the perturbation knobs `observation.alpha` (contrast), `observation.beta` (brightness) and `observation.test_zero_proprio` (replace the robot state with a fixed pose).
+- **The two-process pipeline**: policy server and LIBERO client, recording every trajectory.
+- **Attention analysis**: extraction, metrics and heat-map videos.
+- **The perturbation knobs**: `observation.alpha` (contrast), `observation.beta` (brightness), `observation.test_zero_proprio` (freeze the robot state), and `observation.proprio_noise_std` (physically scaled noise on the robot state).
+- **The sweep driver**, [`scripts/run_sweep.py`](scripts/run_sweep.py): one parameter swept at a time, everything else fixed.
+- **The scene-perturbation system** (Stage 3): [`scene_perturbation.py`](src/runner/libero/scene_perturbation.py) swaps and moves objects by rewriting the LIBERO initial state, with a physics check ([`validate_scene_perturbation.py`](scripts/validate_scene_perturbation.py)) and a failure classifier ([`analyze_scene_failures.py`](scripts/analyze_scene_failures.py)).
+- **The lab-server run scripts** in [`tools/lab-server/`](tools/lab-server/README.md): the sweep launchers, the GPU watcher and the scene-experiment drivers, published as they were used.
 
-**Not yet in this repository:** the later Stage 2 and Stage 3 tooling was developed on the lab's shared server and has not been added here. That is the physically scaled proprioception-noise option, the config-driven 100-episode sweep driver, the GPU watcher, and the **scene-perturbation system** (swap and move objects by rewriting the LIBERO initial state). **Their results and evidence are fully documented in [`research/`](research/)**: the numbers as CSV, the Stage 3 clips, and the methods in the technical report. The sweep logs (about 102 GB) also stay on the lab server.
+How to use the sweep and scene tooling: [`docs/stage2_stage3_tooling.md`](docs/stage2_stage3_tooling.md) and [`docs/stage3_object_position.md`](docs/stage3_object_position.md). The tooling was developed on the lab's shared server and added here afterwards; it has been checked to compile, but it needs a GPU, the model server and LIBERO to run. The sweep logs (about 102 GB) stay on the lab server, so the **results and evidence** are in [`research/`](research/): the numbers as CSV, the Stage 3 clips, and the methods in the technical report.
 
 ## Quick start: run the pipeline
 
@@ -219,6 +228,8 @@ The client is configured by [`configs/runner/libero_pi0.yaml`](configs/runner/li
 | `observation.beta` | `30` | Brightness offset. **Set to `0` for the clean 87/100 baseline** (30 is an inherited offset) |
 | `observation.alpha` | `1` | Contrast gain (1.0 = unchanged) |
 | `observation.test_zero_proprio` | `false` | Replace the robot state with a fixed pose |
+| `observation.proprio_noise_std` | `0.0` | Noise on the robot state, as a unitless multiplier of a physical reference (about 2 cm at `1.0`, 4 cm at `2.0`) |
+| `scene.mode` / `scene.distance` | `none` / `0.0` | Stage 3 scene perturbation: `none`, `move_target`, `move_distractors` or `swap`, with the displacement in metres (see [`libero_pi0_scene.yaml`](configs/runner/libero_pi0_scene.yaml)) |
 | `policy_client.include_attentions` | `true` | Ask the server to return attention maps (does not change behavior: 94/100 vs 91/100) |
 | `logging.save_episode_npz` / `save_rollout_video` | `true` / `true` | Record each trajectory / front-camera video (both are needed for videos) |
 
@@ -258,6 +269,8 @@ This writes `sample_level_attention_metrics.csv` (all episodes), one per-episode
 | **91/100** | Pin `transformers==5.3.0`, `torch==2.7.1`, keep `observation.beta: 30` |
 | **94/100** | The same with `include_attentions: true` |
 | **87/100 (clean anchor)** | The same with `observation.beta: 0` |
+| **Contrast and proprioception sweeps** | `scripts/run_sweep.py`, see [`docs/stage2_stage3_tooling.md`](docs/stage2_stage3_tooling.md) |
+| **Swap and displacement (Stage 3)** | `scripts/run_sweep.py` with [`libero_pi0_scene.yaml`](configs/runner/libero_pi0_scene.yaml), see [`docs/stage3_object_position.md`](docs/stage3_object_position.md) |
 
 Run-to-run variation of the clean baseline was 84–87%, so differences of about 4 points are noise. All numbers and their sources are tabulated in [`research/data/`](research/data/).
 
@@ -270,6 +283,9 @@ Run-to-run variation of the clean baseline was 84–87%, so differences of about
 | [`docs/lerobot.md`](docs/lerobot.md) | Model server setup and startup |
 | [`docs/libero.md`](docs/libero.md) | LIBERO client setup, configuration and outputs |
 | [`docs/stage1_issues_and_reproduction.md`](docs/stage1_issues_and_reproduction.md) | Plain-language log of every problem hit while reproducing the baseline, and the fixes |
+| [`docs/stage2_stage3_tooling.md`](docs/stage2_stage3_tooling.md) | How to run the sweeps, the proprioception noise and the scene perturbations |
+| [`docs/stage3_object_position.md`](docs/stage3_object_position.md) | Why and how the object-position experiments work; the six-slot finding |
+| [`tools/lab-server/README.md`](tools/lab-server/README.md) | The lab-server run scripts |
 | [`docs/attention_baseline_findings.md`](docs/attention_baseline_findings.md) | Baseline and per-object attention findings |
 | [`docs/how_to_read_attention_videos.md`](docs/how_to_read_attention_videos.md) | A guide to the heat-map videos |
 | [`docs/progress_baseline_and_brightness.md`](docs/progress_baseline_and_brightness.md) | Baseline and brightness-sweep progress report |
@@ -280,7 +296,7 @@ Run-to-run variation of the clean baseline was 84–87%, so differences of about
 ## Limitations
 
 - **One model, one benchmark.** All results are for π0 on LIBERO-Object and do not show that other VLA models or benchmarks behave the same way.
-- **Stage 3 is the newest and thinnest evidence.** It uses 20 episodes per condition (the earlier sweeps use 100), and the scene-perturbation scripts were written from scratch this summer and have not had an independent review.
+- **Stage 3 is the newest and thinnest evidence.** It uses 20 episodes per condition (the earlier sweeps use 100), and the scene-perturbation scripts were written from scratch this summer and have not had an independent review. The tooling in this repository was run on the lab server and has only been checked here to compile.
 - **Attention is a clue, not proof.** Attention has not yet been recorded during the swap condition, so it is not yet known whether the model's attention follows the target to its new position.
 - **Run-to-run noise.** Clean baselines were 84%, 86% and 87%; each sweep used a single seed.
 - **State is partly recoverable from the wrist camera**, so a small drop under state noise would not on its own prove the model ignores state.

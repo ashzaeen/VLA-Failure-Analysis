@@ -23,7 +23,7 @@ research/
 └── literature.md                Papers this work builds on
 ```
 
-The rest of the repository (code under `scripts/`, `src/`, `analysis/`, setup guides under [`docs/`](../docs/), and the attention clips in [`report_videos/`](../report_videos/)) is unchanged.
+The code that produced these results is documented in [`docs/stage2_stage3_tooling.md`](../docs/stage2_stage3_tooling.md) and [`docs/stage3_object_position.md`](../docs/stage3_object_position.md), with the lab-server run scripts in [`tools/lab-server/`](../tools/lab-server/README.md). The rest of the repository (code under `scripts/`, `src/`, `analysis/`, setup guides under [`docs/`](../docs/), and the attention clips in [`report_videos/`](../report_videos/)) is unchanged.
 
 ## Evidence map: claim → numbers → proof
 

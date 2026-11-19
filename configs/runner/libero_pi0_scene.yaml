@@ -1,0 +1,69 @@
+﻿# Stage 3 base config: object-position perturbations.
+#
+# Identical to configs/runner/libero_pi0.yaml except that (a) the observation is
+# left clean (beta=0, alpha=1, no proprio noise) so the only manipulated factor
+# is object placement, and (b) it carries a `scene` block. run_sweep.py overrides
+# scene.mode / scene.distance per condition.
+
+experiment:
+  name: libero_pi0_scene
+  seed: 1
+  output_dir: outputs/scene_stage3
+
+env:
+  task_suite: libero_object
+  resolution: 256
+  max_steps: 500
+  num_trials_per_task: 10
+  num_steps_wait: 10
+  render: false
+
+observation:
+  image_size: 256
+  image_keys:
+    - agentview
+    - robot0_eye_in_hand
+  rotate_180: true
+  use_proprio: true
+  state_dim: 8
+  alpha: 1                             # clean contrast
+  beta: 0                              # clean brightness (the validated beta=0 baseline)
+  test_zero_proprio: false
+  proprio_noise_std: 0.0               # clean proprio
+  proprio_noise_seed: 0
+
+scene:
+  mode: none                           # none | move_target | move_distractors | swap
+  distance: 0.0                        # radial displacement (m) for the move_* modes
+  seed: 1                              # fixes the per-episode displacement direction
+  swap_partner: -1                     # -1 = cycle distractors by episode index
+  min_separation: 0.08                 # min centre-to-centre gap between groceries (m)
+  basket_clearance: 0.16               # exclusion radius around the basket (m)
+  x_bounds: [-0.25, 0.20]              # placement region on the table (m)
+  y_bounds: [-0.30, 0.12]
+  direction_candidates: 36
+
+robot:
+  action_scale: 1.0
+  normalize_gripper: true
+  invert_gripper: false
+  binarize_gripper: true
+
+policy_client:
+  base_url: http://127.0.0.1:8001
+  timeout_seconds: 1200
+  policy_id: pi0
+  use_chunk: true
+  replan_threshold: 1
+  run_steps: 20
+  batch_size: 1
+  include_attentions: false            # off for smoke runs; on for the full run
+  include_nll: false
+  nll_hutchinson_samples: 5
+  include_obs_embs: false
+
+logging:
+  save_rollout_video: false
+  save_attention: false
+  save_logs: true
+  save_episode_npz: false
