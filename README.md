@@ -6,27 +6,41 @@
 </p>
 
 <p align="center">
-  <a href="https://ashzaeen.github.io/VLA-Failure-Analysis/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-briefs-dark.svg"><img src="docs/assets/readme/button-briefs-light.svg" alt="Read the briefs: two interactive studies" width="280" height="60"></picture></a>
-  <a href="research/summer-failure-analysis/reports/Technical-Report.pdf"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-report-dark.svg"><img src="docs/assets/readme/button-report-light.svg" alt="Technical report: 15 pages, PDF" width="280" height="60"></picture></a>
+  <a href="https://ashzaeen.github.io/VLA-Failure-Analysis/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-briefs-dark.svg"><img src="docs/assets/readme/button-briefs-light.svg" alt="Read the Briefs: Two Interactive Studies" width="280" height="60"></picture></a>
+  <a href="research/summer-failure-analysis/reports/Technical-Report.pdf"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-report-dark.svg"><img src="docs/assets/readme/button-report-light.svg" alt="Technical Report: 15 Pages, PDF" width="280" height="60"></picture></a>
 </p>
 <p align="center">
-  <a href="research/summer-failure-analysis/data/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-data-dark.svg"><img src="docs/assets/readme/button-data-light.svg" alt="Data and figures: every number as CSV" width="280" height="60"></picture></a>
-  <a href="research/summer-failure-analysis/evidence/scene-perturbation-clips/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-clips-dark.svg"><img src="docs/assets/readme/button-clips-light.svg" alt="Watch the clips: 160 rollout videos" width="280" height="60"></picture></a>
+  <a href="research/summer-failure-analysis/data/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-data-dark.svg"><img src="docs/assets/readme/button-data-light.svg" alt="Data and Figures: Every Number as CSV" width="280" height="60"></picture></a>
+  <a href="research/summer-failure-analysis/evidence/scene-perturbation-clips/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-clips-dark.svg"><img src="docs/assets/readme/button-clips-light.svg" alt="Watch the Clips: 160 Rollout Videos" width="280" height="60"></picture></a>
 </p>
 
 <p align="center"><sub>π0 on LIBERO-Object &nbsp;·&nbsp; Python 3.12 &nbsp;·&nbsp; MIT license &nbsp;·&nbsp; Robotic Vision Laboratory, UT Arlington</sub></p>
 
 **Does π0 look at the object, or just remember where it usually is?**
 
-This repository is a study of the vision-language-action model **π0** on the LIBERO-Object benchmark, and everything behind it: a pipeline that runs π0 in the LIBERO simulator and records every episode, tools that show where the model looks, and the reports, data and video clips from two studies run in 2026.
+This repository holds two studies of the vision-language-action model **π0**, both run in 2026 at the Robotic Vision Laboratory: a short **spring** robustness evaluation on LIBERO-plus, and a larger **summer** failure analysis on LIBERO-Object that tests whether π0 finds the instructed object or goes to a memorized place. The summer study is the main subject. The repository also holds the pipeline that runs π0 in the LIBERO simulator and records every episode, tools that show where the model looks, and the reports, data and video clips from both studies.
 
-**Contents:** [The short answer](#the-short-answer) · [What was found](#what-was-found) · [Two studies](#two-studies) · [Where to go](#where-to-go) · [Repository layout](#repository-layout) · [How the study was organized](#how-the-study-was-organized) · [Quick start](#quick-start) · [Limitations](#limitations) · [Credits and license](#credits-and-license)
+**Contents:** [Spring Research](#spring-research-robustness-on-libero-plus) · [The Short Answer](#the-short-answer) · [What Was Found](#what-was-found) · [Where to Go](#where-to-go) · [Repository Layout](#repository-layout) · [How the Study Was Organized](#how-the-study-was-organized) · [Quick Start](#quick-start) · [Limitations](#limitations) · [Credits and License](#credits-and-license)
 
 ---
 
-## The short answer
+## Spring Research: Robustness on LIBERO-plus
 
-π0 scores **84–94%** on LIBERO-Object, which looks like real object understanding. Three experiments suggest that score is easier to earn than it looks.
+The spring study was smaller. It tested π0, zero-shot, on LIBERO-plus, a benchmark that adds controlled perturbations on a difficulty scale, and it was presented at the UTA College of Engineering Innovation Day on April 14, 2026.
+
+| Perturbation | Result |
+|---|---|
+| Object layout, background textures | About 100%, flat at every intensity |
+| Language, lighting, sensor noise | About 90–100% |
+| Camera viewpoint, robot starting pose | About 67% on average, as low as 50% at the hardest level |
+
+π0 survived having **objects** moved but not the **robot or camera**, which suggested it leans on a memorized frame tied to its own body. The summer study below tests that suspicion directly. Each task ran once per setting and the numbers are the rounded values from the poster, so treat them as a pattern, not precise rates.
+
+[Spring brief](https://ashzaeen.github.io/VLA-Failure-Analysis/Spring-2026-VLA-Robustness-LIBERO-Plus.html) · [`research/spring-robustness-study/`](research/spring-robustness-study/README.md)
+
+## The Short Answer
+
+The summer study started from a simple observation: π0 scores **84–94%** on LIBERO-Object, which looks like real object understanding. Three experiments suggest that score is easier to earn than it looks.
 
 | | Experiment | Result |
 |---|---|---|
@@ -38,7 +52,7 @@ This repository is a study of the vision-language-action model **π0** on the LI
 
 This is evidence from one model on one benchmark. See [Limitations](#limitations).
 
-## What was found
+## What Was Found
 
 **1. A silent bug nearly invalidated the project.** The inherited pipeline scored **10/100** with no error. A wrong library version (`transformers 5.12.1`) made the vision encoder **silently load random weights**. Pinning `transformers==5.3.0` restored a 91/100 baseline; the clean baseline settled at **87/100**. *If you reproduce this work, that pin is the most important thing to get right.* See [`requirements-working.txt`](requirements-working.txt) and the [reproduction log](docs/project-log/2026-06-25-Stage-1-Reproduction-Log.md).
 
@@ -58,16 +72,7 @@ This is evidence from one model on one benchmark. See [Limitations](#limitations
 
 Swapping the target with another object drops success from **80% to 0/20**; moving the target just **5 cm** drops it to **10%**; moving *other* objects up to 15 cm leaves it at **85–100%**. The robot isn't upset by any change, it cares where the target *used to be*. The 160 clips are in [`research/summer-failure-analysis/evidence/scene-perturbation-clips/`](research/summer-failure-analysis/evidence/scene-perturbation-clips/).
 
-## Two studies
-
-The work ran in two parts. The spring study found where π0 is brittle, and the summer study tested why.
-
-| | Question | Read | Files |
-|---|---|---|---|
-| **Spring 2026** | How does π0 degrade when the instruction, scene, camera or robot start changes? | [Interactive brief](https://ashzaeen.github.io/VLA-Failure-Analysis/Spring-2026-VLA-Robustness-LIBERO-Plus.html) | [`research/spring-robustness-study/`](research/spring-robustness-study/README.md) |
-| **Summer 2026** | Does π0 find the instructed object, or go to a memorized place? | [Interactive brief](https://ashzaeen.github.io/VLA-Failure-Analysis/Summer-2026-VLA-Failure-Analysis.html) | [`research/summer-failure-analysis/`](research/summer-failure-analysis/README.md) |
-
-## Where to go
+## Where to Go
 
 | I want to… | Go to |
 |---|---|
@@ -76,11 +81,11 @@ The work ran in two parts. The spring study found where π0 is brittle, and the 
 | See the raw numbers | [`research/summer-failure-analysis/data/`](research/summer-failure-analysis/data/) |
 | Watch the experiments | [`research/summer-failure-analysis/evidence/`](research/summer-failure-analysis/evidence/README.md) |
 | Follow the story week by week | [`research/summer-failure-analysis/progress-reports/`](research/summer-failure-analysis/progress-reports/README.md) |
-| Run the pipeline myself | [Quick start](#quick-start), then [`docs/setup/`](docs/setup/) |
+| Run the pipeline myself | [Quick Start](#quick-start), then [`docs/setup/`](docs/setup/) |
 | Run the sweeps and scene experiments | [`docs/guides/Sweeps-and-Scene-Tooling.md`](docs/guides/Sweeps-and-Scene-Tooling.md) |
 | Find any other document | [`docs/README.md`](docs/README.md) |
 
-## Repository layout
+## Repository Layout
 
 ```text
 .
@@ -114,7 +119,7 @@ The work ran in two parts. The spring study found where π0 is brittle, and the 
 └── vlas/                  Vendored third-party model code (LeRobot, OpenVLA-OFT)
 ```
 
-## How the study was organized
+## How the Study Was Organized
 
 | Stage | Goal | Status |
 |---|---|---|
@@ -126,7 +131,7 @@ The work ran in two parts. The spring study found where π0 is brittle, and the 
 
 Two rules run through every experiment. **Attention is a hypothesis, perturbation is the evidence**: a heat map is only trusted once a controlled change turns it into proof. **One change at a time**: each sweep varies a single factor with the seed fixed, and includes a "no-op" condition that runs the whole pipeline while changing nothing, so harness bugs show up first.
 
-## Quick start
+## Quick Start
 
 The system is two processes that talk over HTTP: a **policy server** that loads π0 and answers `/predict`, and a **LIBERO client** that steps the simulator. They use **separate environments**. The lab ran them on two NVIDIA A40 GPUs.
 
@@ -174,7 +179,7 @@ python scripts/run_libero_eval.py --config configs/runner/libero_pi0.yaml
 
 Full guides, including a UR5 server config: [`docs/setup/Server-Setup.md`](docs/setup/Server-Setup.md) and [`docs/setup/Client-Setup.md`](docs/setup/Client-Setup.md).
 
-## Going further
+## Going Further
 
 | Topic | Guide |
 |---|---|
@@ -197,7 +202,7 @@ The sweep and scene tooling was developed on the lab's shared server and added h
 - **The tables in `research/summer-failure-analysis/data/` were transcribed from the weekly reports**, not regenerated from raw per-run files, which stay on the lab server.
 - **Inherited-code quirks** are documented in [`docs/setup/Client-Setup.md`](docs/setup/Client-Setup.md); for example, `LiberoEvaluator.evaluate()` runs from task ID 8 to the end of the suite.
 
-## Credits and license
+## Credits and License
 
 Work by **Ashzaeen Fatmi Khan** in the **Robotic Vision Laboratory, University of Texas at Arlington**, advised by **Dr. William Beksi**, with **Zongyao Lyu** as graduate mentor. The preliminary pipeline and experiments this work extends came from the lab. The model is **π0** from Physical Intelligence; the benchmark is **LIBERO**. Papers this work builds on are in [`research/Literature.md`](research/Literature.md).
 
