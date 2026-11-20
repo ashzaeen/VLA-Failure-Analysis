@@ -1,6 +1,0 @@
-condition,detail,episodes,result,source_report
-no_op_anchor,object poses rewritten but not moved,20,80% success,update_2026-08-21.pdf
-swap,target and one distractor exchange places,20,0/20 success; robot grasps the decoy in 60% of episodes and touches the true target in 15%,update_2026-08-21.pdf
-move_target_only,target displaced by 5 cm,20,10% success (80% -> 10%),update_2026-08-21.pdf
-move_distractors_only,distractors displaced up to 15 cm (control),20,85-100% success,update_2026-08-21.pdf
-physical_settling_check,all rewritten poses settle without falls drift or collisions,42 condition-episodes,42/42 clean,update_2026-08-21.pdf

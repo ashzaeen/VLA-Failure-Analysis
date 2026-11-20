@@ -14,10 +14,10 @@ The shell and Python helpers used to run the experiments on the lab's shared GPU
 | Script | What it does |
 |---|---|
 | [`sweep_common.sh`](sweep_common.sh) · [`sweep_common_full.sh`](sweep_common_full.sh) | Shared preamble: health check, environment, and the smoke or **full** override string (attention, video and NPZ on for the full runs) |
-| [`sweep_proprio.sh`](sweep_proprio.sh) · [`sweep_proprio_full.sh`](sweep_proprio_full.sh) | Proprioception-noise sweep, std 0, 0.5, 1, 2, 4, 8 (smoke and full) |
+| [`sweep_proprioception.sh`](sweep_proprioception.sh) · [`sweep_proprioception_full.sh`](sweep_proprioception_full.sh) | Proprioception-noise sweep, std 0, 0.5, 1, 2, 4, 8 (smoke and full) |
 | [`sweep_contrast.sh`](sweep_contrast.sh) · [`sweep_contrast_full.sh`](sweep_contrast_full.sh) | Contrast sweep, gain 0.2–2.0 (smoke and full) |
 | [`sweep_all.sh`](sweep_all.sh) · [`sweep_all_full.sh`](sweep_all_full.sh) | Run both back to back, proprioception first |
-| [`beta_sweep.sh`](beta_sweep.sh) · [`beta_sweep_attn.sh`](beta_sweep_attn.sh) | Brightness sweep, without and with attention capture |
+| [`sweep_brightness.sh`](sweep_brightness.sh) · [`sweep_brightness_attn.sh`](sweep_brightness_attn.sh) | Brightness sweep, without and with attention capture |
 | [`sweep_summary.sh`](sweep_summary.sh) | Summarizes the brightness-with-attention sweep (success and attention peak/entropy per offset) into `SWEEP_SUMMARY.csv` |
 | [`sweep_validate.sh`](sweep_validate.sh) | A fast sanity run: one proprioception-noise condition, 1 trial per task (10 episodes), to prove the perturbation, client and server round-trip before a full sweep |
 
@@ -33,11 +33,11 @@ The shell and Python helpers used to run the experiments on the lab's shared GPU
 |---|---|
 | [`introspect_libero_scene.py`](introspect_libero_scene.py) | Decodes every LIBERO-Object task's object layout (the **six-slot finding**) |
 | [`scene_common.sh`](scene_common.sh) | Shared preamble for the scene sweeps |
-| [`scene_all_smoke.sh`](scene_all_smoke.sh) · [`scene_all_smoke_vid.sh`](scene_all_smoke_vid.sh) | The swap, move-target and move-distractors runs (2 trials per task = 20 episodes per condition), first without and then with rollout video. Re-running the same seeds doubles as a reproducibility check |
-| [`wait_scene_health.sh`](wait_scene_health.sh) | Wait until the policy server reports healthy |
-| [`watch_anchor.sh`](watch_anchor.sh) | Block until the no-op anchor condition reports. It must reproduce the clean baseline, otherwise the Stage 3 pipeline is broken |
-| [`watch_scene_smoke.sh`](watch_scene_smoke.sh) | Block until the smoke sweep finishes, then print every per-condition result |
-| [`finish_scene_smoke.sh`](finish_scene_smoke.sh) | Wait for the video run, report each condition's success rate, classify which objects the robot disturbed, and package the rollout videos into one archive |
+| [`scene_all_smoke.sh`](scene_all_smoke.sh) · [`scene_all_smoke_video.sh`](scene_all_smoke_video.sh) | The swap, move-target and move-distractors runs (2 trials per task = 20 episodes per condition), first without and then with rollout video. Re-running the same seeds doubles as a reproducibility check |
+| [`scene_wait_health.sh`](scene_wait_health.sh) | Wait until the policy server reports healthy |
+| [`scene_watch_anchor.sh`](scene_watch_anchor.sh) | Block until the no-op anchor condition reports. It must reproduce the clean baseline, otherwise the Stage 3 pipeline is broken |
+| [`scene_watch_smoke.sh`](scene_watch_smoke.sh) | Block until the smoke sweep finishes, then print every per-condition result |
+| [`scene_finish_smoke.sh`](scene_finish_smoke.sh) | Wait for the video run, report each condition's success rate, classify which objects the robot disturbed, and package the rollout videos into one archive |
 
 ## Attention helpers (contrast sweep)
 

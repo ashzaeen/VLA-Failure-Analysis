@@ -26,15 +26,15 @@ Written as the work happened, in order, and kept as it was.
 
 | Document | Covers |
 |---|---|
-| [`project-log/research-plan.md`](project-log/research-plan.md) | The original summer research plan |
-| [`project-log/stage-1-reproduction-log.md`](project-log/stage-1-reproduction-log.md) | A plain-language log of every problem hit while reproducing the baseline, and the fixes |
-| [`project-log/baseline-reproduction-daily-log.md`](project-log/baseline-reproduction-daily-log.md) | Day-by-day log of the baseline reproduction |
-| [`project-log/baseline-and-attention-findings.md`](project-log/baseline-and-attention-findings.md) | Baseline and per-object attention findings |
-| [`project-log/baseline-and-brightness-progress.md`](project-log/baseline-and-brightness-progress.md) | Baseline and brightness-sweep progress report |
-| [`project-log/progress-report-2026-07-14.md`](project-log/progress-report-2026-07-14.md) | Stages 1–2 progress report, July 14, 2026 |
+| [`project-log/research-plan.md`](project-log/2026-06-19-research-plan.md) | The original summer research plan |
+| [`project-log/stage-1-reproduction-log.md`](project-log/2026-06-25-stage-1-reproduction-log.md) | A plain-language log of every problem hit while reproducing the baseline, and the fixes |
+| [`project-log/baseline-reproduction-daily-log.md`](project-log/2026-07-02-baseline-reproduction-daily-log.md) | Day-by-day log of the baseline reproduction |
+| [`project-log/baseline-and-attention-findings.md`](project-log/2026-07-03-baseline-and-attention-findings.md) | Baseline and per-object attention findings |
+| [`project-log/baseline-and-brightness-progress.md`](project-log/2026-07-14-baseline-and-brightness-progress.md) | Baseline and brightness-sweep progress report |
+| [`project-log/progress-report-2026-07-14.md`](project-log/2026-07-14-stages-1-2-progress-report.md) | Stages 1–2 progress report, July 14, 2026 |
 
 ## Elsewhere in the repository
 
 - [`../tools/lab-server/README.md`](../tools/lab-server/README.md): the run scripts used on the lab server.
-- [`../research/progress-reports/`](../research/progress-reports/README.md): the weekly progress reports sent to the advisor.
+- [`../research/summer-failure-analysis/progress-reports/`](../research/summer-failure-analysis/progress-reports/README.md): the weekly progress reports sent to the advisor.
 - [`../research/literature.md`](../research/literature.md): the papers this work builds on.

@@ -54,4 +54,4 @@ A success rate says the policy failed; it does not say *how*. The evaluator now 
 
 ## What it showed
 
-With 20 episodes per condition, swapping the target with a distractor dropped success from **80% to 0/20**, with the robot grasping the decoy in 60% of episodes and touching the true target in 15%. Moving only the target by 5 cm dropped success to 10%, while moving distractors up to 15 cm left it at 85–100%. The numbers, clips and full discussion are in [`research/`](../../research/README.md).
+With 20 episodes per condition, swapping the target with a distractor dropped success from **80% to 0/20**, with the robot grasping the decoy in 60% of episodes and touching the true target in 15%. Moving only the target by 5 cm dropped success to 10%, while moving distractors up to 15 cm left it at 85–100%. The numbers, clips and full discussion are in [`research/`](../../research/summer-failure-analysis/README.md).

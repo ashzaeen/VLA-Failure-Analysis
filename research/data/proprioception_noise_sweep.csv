@@ -1,7 +1,0 @@
-proprio_noise_std,approx_position_noise_cm,success,episodes,success_rate_pct,relative_to_clean_pct,source_report
-0,0,86,100,86,0,week-11_2026-07-24.pdf
-0.5,1,75,100,75,-13,week-11_2026-07-24.pdf
-1,2,47,100,47,-45,week-11_2026-07-24.pdf
-2,4,4,100,4,-95,week-11_2026-07-24.pdf
-4,8,0,100,0,-100,week-11_2026-07-24.pdf
-8,16,0,100,0,-100,week-11_2026-07-24.pdf

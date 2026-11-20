@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Shared preamble for the FULL perturbation sweeps (100 eps/condition, attention +
-# video + NPZ all ENABLED). Sourced by sweep_contrast_full.sh / sweep_proprio_full.sh.
+# video + NPZ all ENABLED). Sourced by sweep_contrast_full.sh / sweep_proprioception_full.sh.
 set -uo pipefail
 REPO="$HOME/projects/vla-failure-analysis"; cd "$REPO"
 if ! curl -s -m 5 http://127.0.0.1:8001/health | grep -q ok; then
