@@ -1,22 +1,32 @@
-# VLA Failure Analysis
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/hero-dark.svg">
+    <img src="docs/assets/readme/hero-light.svg" alt="Does the robot look, or just remember? A failure analysis of the π0 model on LIBERO-Object. A six-slot grid shows the target and a decoy swapped while the robot arm still reaches for the usual slot." width="880">
+  </picture>
+</p>
 
-### Does π0 look at the object, or just remember where it usually is?
+<p align="center">
+  <a href="https://ashzaeen.github.io/VLA-Failure-Analysis/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-briefs-dark.svg"><img src="docs/assets/readme/button-briefs-light.svg" alt="Read the briefs: two interactive studies" width="280" height="60"></picture></a>
+  <a href="research/summer-failure-analysis/reports/Technical-Report.pdf"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-report-dark.svg"><img src="docs/assets/readme/button-report-light.svg" alt="Technical report: 15 pages, PDF" width="280" height="60"></picture></a>
+</p>
+<p align="center">
+  <a href="research/summer-failure-analysis/data/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-data-dark.svg"><img src="docs/assets/readme/button-data-light.svg" alt="Data and figures: every number as CSV" width="280" height="60"></picture></a>
+  <a href="research/summer-failure-analysis/evidence/scene-perturbation-clips/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/button-clips-dark.svg"><img src="docs/assets/readme/button-clips-light.svg" alt="Watch the clips: 160 rollout videos" width="280" height="60"></picture></a>
+</p>
 
-![Model](https://img.shields.io/badge/model-π0-1B2559) ![Benchmark](https://img.shields.io/badge/benchmark-LIBERO--Object-B08A3E) ![Python](https://img.shields.io/badge/python-3.12-3776AB) ![License](https://img.shields.io/badge/license-MIT-2E7D32) ![Status](https://img.shields.io/badge/stages%201--3-complete-2E7D32) ![Lab](https://img.shields.io/badge/UT%20Arlington-Robotic%20Vision%20Lab-0064B1)
+<p align="center"><sub>π0 on LIBERO-Object &nbsp;·&nbsp; Python 3.12 &nbsp;·&nbsp; MIT license &nbsp;·&nbsp; Robotic Vision Laboratory, UT Arlington</sub></p>
 
-A research project, and the code behind it, on whether the vision-language-action model **π0** genuinely finds the object it is told to pick up, or scores well on the LIBERO-Object benchmark by going to a *memorized place* with a *memorized motion*.
+**Does π0 look at the object, or just remember where it usually is?**
 
-The repository holds a pipeline that runs π0 in the LIBERO simulator and records everything, tools that analyze where the model "looks", and the full reports, data and evidence from the study.
+This repository is a study of the vision-language-action model **π0** on the LIBERO-Object benchmark, and everything behind it: a pipeline that runs π0 in the LIBERO simulator and records every episode, tools that show where the model looks, and the reports, data and video clips from two studies run in 2026.
 
-> **Just want the results?** Read [`research/summer-failure-analysis/reports/Illustrated-Report.md`](research/summer-failure-analysis/reports/Illustrated-Report.md), an illustrated plain-language report.
-
-**Contents:** [At a glance](#at-a-glance) · [Where to go](#where-to-go) · [Repository layout](#repository-layout) · [What was found](#what-was-found) · [How the study was organized](#how-the-study-was-organized) · [Quick start](#quick-start) · [Going further](#going-further) · [Limitations](#limitations) · [Credits and license](#credits-and-license)
+**Contents:** [The short answer](#the-short-answer) · [What was found](#what-was-found) · [Two studies](#two-studies) · [Where to go](#where-to-go) · [Repository layout](#repository-layout) · [How the study was organized](#how-the-study-was-organized) · [Quick start](#quick-start) · [Limitations](#limitations) · [Credits and license](#credits-and-license)
 
 ---
 
-## At a glance
+## The short answer
 
-π0 scores **84–94%** on LIBERO-Object, which looks like real object understanding. Three independent experiments say the score is easier to earn than it looks:
+π0 scores **84–94%** on LIBERO-Object, which looks like real object understanding. Three experiments suggest that score is easier to earn than it looks.
 
 | | Experiment | Result |
 |---|---|---|
@@ -26,59 +36,7 @@ The repository holds a pipeline that runs π0 in the LIBERO simulator and record
 
 > **Conclusion.** π0 appears to succeed by **going to the right place with the right motion, not by finding the right object.** The benchmark makes this shortcut easy: every task places objects on the same six spots, and the target always sits on one of only two of them. A high LIBERO-Object score is weaker evidence of grounding than it looks.
 
-This is evidence from one model on one benchmark; see [Limitations](#limitations).
-
-## Where to go
-
-| I want to… | Go to |
-|---|---|
-| Read the two interactive research briefs online | [https://ashzaeen.github.io/VLA-Failure-Analysis/](https://ashzaeen.github.io/VLA-Failure-Analysis/) |
-| Read the results in plain language | [`research/summer-failure-analysis/reports/Illustrated-Report.md`](research/summer-failure-analysis/reports/Illustrated-Report.md) |
-| Read the full technical report | [`research/summer-failure-analysis/reports/`](research/summer-failure-analysis/reports/) |
-| See the raw numbers | [`research/summer-failure-analysis/data/`](research/summer-failure-analysis/data/) |
-| Watch the experiments | [`research/summer-failure-analysis/evidence/`](research/summer-failure-analysis/evidence/README.md) |
-| Follow the story week by week | [`research/summer-failure-analysis/progress-reports/`](research/summer-failure-analysis/progress-reports/README.md) |
-| Run the pipeline myself | [Quick start](#quick-start) below, then [`docs/setup/`](docs/setup/) |
-| Run the sweeps and scene experiments | [`docs/guides/Sweeps-and-Scene-Tooling.md`](docs/guides/Sweeps-and-Scene-Tooling.md) |
-| Find a specific document | [`docs/README.md`](docs/README.md) |
-
-## Repository layout
-
-```text
-.
-├── README.md · LICENSE · CLAUDE.md · requirements-working.txt
-│
-├── site/                  The two research briefs, published with GitHub Pages
-├── research/              The two studies, each self-contained
-│   ├── Literature.md        Papers the work builds on
-│   ├── spring-robustness-study/    Spring 2026: π0 on LIBERO-plus (proposal, abstract, poster, code)
-│   └── summer-failure-analysis/    Summer 2026: does π0 look, or remember?
-│       ├── reports/           Illustrated report (start here), technical report, plain-language summary
-│       ├── data/              Every reported number as CSV
-│       ├── evidence/          Original 10/100 run, scene-perturbation clips, attention audit
-│       ├── figures/           Charts (PNG, SVG)
-│       ├── presentation/      Exit presentation and speaker notes
-│       └── progress-reports/  Weekly reports, May 14 – Aug 21, 2026
-│
-├── docs/                  Documentation
-│   ├── setup/               Server and client installation
-│   ├── guides/              How-to guides (sweeps, scene experiments, configuration, videos)
-│   └── project-log/         The working record: reproduction log, findings, plan
-│
-├── configs/               YAML configs
-│   ├── server/              Policy-server configs (π0 LIBERO, UR5)
-│   └── runner/              LIBERO client configs (baseline, Stage 3 scene)
-├── scripts/               Entry points: server, evaluation, sweeps, attention analysis
-│   └── dev/                 One-off developer utilities
-├── src/                   Library code: server, runner, models, utilities
-├── analysis/              Attention analysis library
-├── robots/                Robot-arm and inference abstractions for LIBERO
-├── examples/              Small usage examples
-├── notebooks/             Exploratory notebooks
-├── tests/                 Tests
-├── tools/lab-server/      Run scripts used on the lab's GPU server (see its README)
-└── vlas/                  Vendored third-party model code (LeRobot, OpenVLA-OFT)
-```
+This is evidence from one model on one benchmark. See [Limitations](#limitations).
 
 ## What was found
 
@@ -99,6 +57,62 @@ This is evidence from one model on one benchmark; see [Limitations](#limitations
 ![Stage 3 scene perturbations](research/summer-failure-analysis/figures/scene-perturbations.png)
 
 Swapping the target with another object drops success from **80% to 0/20**; moving the target just **5 cm** drops it to **10%**; moving *other* objects up to 15 cm leaves it at **85–100%**. The robot isn't upset by any change, it cares where the target *used to be*. The 160 clips are in [`research/summer-failure-analysis/evidence/scene-perturbation-clips/`](research/summer-failure-analysis/evidence/scene-perturbation-clips/).
+
+## Two studies
+
+The work ran in two parts. The spring study found where π0 is brittle, and the summer study tested why.
+
+| | Question | Read | Files |
+|---|---|---|---|
+| **Spring 2026** | How does π0 degrade when the instruction, scene, camera or robot start changes? | [Interactive brief](https://ashzaeen.github.io/VLA-Failure-Analysis/Spring-2026-VLA-Robustness-LIBERO-Plus.html) | [`research/spring-robustness-study/`](research/spring-robustness-study/README.md) |
+| **Summer 2026** | Does π0 find the instructed object, or go to a memorized place? | [Interactive brief](https://ashzaeen.github.io/VLA-Failure-Analysis/Summer-2026-VLA-Failure-Analysis.html) | [`research/summer-failure-analysis/`](research/summer-failure-analysis/README.md) |
+
+## Where to go
+
+| I want to… | Go to |
+|---|---|
+| Read the results in plain language | [`Illustrated-Report.md`](research/summer-failure-analysis/reports/Illustrated-Report.md) |
+| Read the full technical report | [`Technical-Report.pdf`](research/summer-failure-analysis/reports/Technical-Report.pdf) |
+| See the raw numbers | [`research/summer-failure-analysis/data/`](research/summer-failure-analysis/data/) |
+| Watch the experiments | [`research/summer-failure-analysis/evidence/`](research/summer-failure-analysis/evidence/README.md) |
+| Follow the story week by week | [`research/summer-failure-analysis/progress-reports/`](research/summer-failure-analysis/progress-reports/README.md) |
+| Run the pipeline myself | [Quick start](#quick-start), then [`docs/setup/`](docs/setup/) |
+| Run the sweeps and scene experiments | [`docs/guides/Sweeps-and-Scene-Tooling.md`](docs/guides/Sweeps-and-Scene-Tooling.md) |
+| Find any other document | [`docs/README.md`](docs/README.md) |
+
+## Repository layout
+
+```text
+.
+├── README.md · LICENSE · CLAUDE.md · requirements-working.txt
+│
+├── site/                  The two research briefs, published with GitHub Pages
+├── research/              The two studies, each self-contained
+│   ├── Literature.md        Papers the work builds on
+│   ├── spring-robustness-study/    Spring 2026: π0 on LIBERO-plus (proposal, abstract, poster, code)
+│   └── summer-failure-analysis/    Summer 2026: does π0 look, or remember?
+│       ├── reports/           Illustrated report, technical report, plain-language summary
+│       ├── data/              Every reported number as CSV
+│       ├── evidence/          Original 10/100 run, scene-perturbation clips, attention audit
+│       ├── figures/           Charts (PNG, SVG)
+│       ├── presentation/      Exit presentation and speaker notes
+│       └── progress-reports/  Weekly reports, May 14 – Aug 21, 2026
+│
+├── docs/                  Documentation
+│   ├── setup/               Server and client installation
+│   ├── guides/              How-to guides (sweeps, scene experiments, configuration, videos)
+│   ├── project-log/         The working record, dated: reproduction logs, findings, plan
+│   └── assets/readme/       Hero and button images used by this README
+│
+├── configs/               YAML configs (policy server, LIBERO runner)
+├── scripts/               Entry points: server, evaluation, sweeps, attention analysis
+├── src/                   Library code: server, runner, models, utilities
+├── analysis/              Attention analysis library
+├── robots/                Robot-arm and inference abstractions for LIBERO
+├── examples/ · notebooks/ · tests/
+├── tools/lab-server/      Run scripts used on the lab's GPU server (see its README)
+└── vlas/                  Vendored third-party model code (LeRobot, OpenVLA-OFT)
+```
 
 ## How the study was organized
 
