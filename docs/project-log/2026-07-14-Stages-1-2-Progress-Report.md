@@ -68,7 +68,7 @@ weights**). The repo's own `requirements-ubuntu.txt` pin (`4.57.1`) is stale and
 `pyproject` floor `>=5.3.0` was the correct signal. See `requirements-working.txt`.
 
 ### 2.4 Other pipeline defects found and fixed
-Documented fully in `docs/project-log/2026-06-25-stage-1-reproduction-log.md` (8 issues). Highlights: missing
+Documented fully in `docs/project-log/2026-06-25-Stage-1-Reproduction-Log.md` (8 issues). Highlights: missing
 config files, a transformers-5 import crash (groot dataclass), a gated-tokenizer blocker, an
 evaluator that only ran 2 of 10 tasks and mislabeled episodes, and a latent 5-vs-6 unpack bug that
 crashed the server whenever attention was requested. Resolving and documenting these is itself the
@@ -100,7 +100,7 @@ camera's 256 patch tokens, and reshape into a **16×16 heatmap**.
 **Per-frame metrics** (`scripts/analyze_attention.py`): **peak** (strength of the hottest patch —
 focus vs. spread), **entropy** (low = concentrated), Gini / top-k share, and peak-patch location.
 Each episode also gets a heatmap overlay **video**. Reading guide:
-`docs/guides/reading-attention-videos.md`.
+`docs/guides/Reading-Attention-Videos.md`.
 
 **Caveat used throughout:** attention is a **diagnostic, not proof**. It is one layer, one head,
 mean-pooled; the model also has a wrist camera and learned motion. Attention flags hypotheses to
@@ -264,5 +264,5 @@ python scripts/analyze_attention.py --npz_dir outputs/<run>/episodes_npz \
   server; pulled on request.)
 - `research/summer-failure-analysis/evidence/attention-audit/` — 4 representative clips + captions + all-10-trials audit contact sheets.
 
-**Companion docs:** `2026-06-25-stage-1-reproduction-log.md` (defect log), `2026-07-03-baseline-and-attention-findings.md`
-(detailed findings), `reading-attention-videos.md` (reading guide), `docs/project-log/2026-07-02-baseline-reproduction-daily-log.md` (working log).
+**Companion docs:** `2026-06-25-Stage-1-Reproduction-Log.md` (defect log), `2026-07-03-Baseline-and-Attention-Findings.md`
+(detailed findings), `Reading-Attention-Videos.md` (reading guide), `docs/project-log/2026-07-02-Baseline-Reproduction-Daily-Log.md` (working log).

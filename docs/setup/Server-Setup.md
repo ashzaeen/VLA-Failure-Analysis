@@ -4,7 +4,7 @@ This document describes the environment setup, model configuration, and startup
 procedure for the LeRobot model server.
 
 For LIBERO client environment setup and startup instructions, see
-[`docs/setup/client-setup.md`](client-setup.md).
+[`docs/setup/Client-Setup.md`](Client-Setup.md).
 
 All commands assume the project root directory:
 
@@ -60,7 +60,7 @@ resolution has not changed the current server behavior.
 - The server and client communicate through the objectVLA `/predict` control
   protocol.
 - The LIBERO client uses a separate environment. See
-  [`docs/setup/client-setup.md`](client-setup.md) for setup and startup instructions.
+  [`docs/setup/Client-Setup.md`](Client-Setup.md) for setup and startup instructions.
 
 ### Configuration File
 
@@ -104,7 +104,7 @@ By default, the server listens on `127.0.0.1:8001`.
 ### Start the Client
 
 For client configuration and startup commands, see
-[`docs/setup/client-setup.md`](client-setup.md).
+[`docs/setup/Client-Setup.md`](Client-Setup.md).
 
 ## LeRobot + UR5
 

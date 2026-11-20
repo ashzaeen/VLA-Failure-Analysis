@@ -18,9 +18,9 @@ The model survived having **objects** moved but not the **robot or camera**, whi
 
 | File | What it is |
 |---|---|
-| [`proposal.pdf`](proposal.pdf) | Project proposal: *Robustness and Sensitivity Analysis of Vision-Language-Action Models via Multi-Modal Perturbation* |
-| [`abstract.pdf`](abstract.pdf) | Abstract |
-| [`innovation-day-poster.pdf`](innovation-day-poster.pdf) | The Innovation Day poster |
+| [`Proposal.pdf`](Proposal.pdf) | Project proposal: *Robustness and Sensitivity Analysis of Vision-Language-Action Models via Multi-Modal Perturbation* |
+| [`Abstract.pdf`](Abstract.pdf) | Abstract |
+| [`Innovation-Day-Poster.pdf`](Innovation-Day-Poster.pdf) | The Innovation Day poster |
 | [`code/run_robustness_eval.py`](code/run_robustness_eval.py) | Evaluation script: takes a task ID, perturbation type and intensity, and runs the LIBERO rollout |
 | [`code/perturbations.py`](code/perturbations.py) and [`code/perturbations.json`](code/perturbations.json) | Linguistic perturbations (verbosity, syntax, synonym) looked up per task |
 

@@ -5,7 +5,7 @@
 *Ashzaeen Fatmi Khan · Robotic Vision Laboratory, UT Arlington · Advisor: Dr. William Beksi · Graduate mentor: Zongyao Lyu · Spring – Summer 2026*
 
 > [!NOTE]
-> This is the readable version. For the full methods, every table and the limitations, see the [technical report](technical-report.pdf). For a shorter, jargon-free version, see the [plain-language summary](plain-language-summary.pdf).
+> This is the readable version. For the full methods, every table and the limitations, see the [technical report](Technical-Report.pdf). For a shorter, jargon-free version, see the [plain-language summary](Plain-Language-Summary.pdf).
 
 ---
 
@@ -52,7 +52,7 @@ Two rules ran through everything. **Attention is a clue, not proof**: a heat map
 
 The first run of the lab's pipeline scored **10 / 100**. Nothing in the logs said why. The cause was a single wrong software version (`transformers 5.12.1`): part of the model's vision system **silently loaded random numbers instead of its trained weights**, so the robot was effectively reaching from memory. Pinning `transformers 5.3.0` fixed it and the score recovered to **91 / 100**. The clean baseline settled at **87 / 100**.
 
-*Evidence: [`data/baselines.csv`](../data/baselines.csv), the original broken run in [`evidence/broken-baseline/`](../evidence/broken-baseline/), and [`docs/project-log/2026-06-25-stage-1-reproduction-log.md`](../../../docs/project-log/2026-06-25-stage-1-reproduction-log.md).*
+*Evidence: [`data/baselines.csv`](../data/baselines.csv), the original broken run in [`evidence/broken-baseline/`](../evidence/broken-baseline/), and [`docs/project-log/2026-06-25-Stage-1-Reproduction-Log.md`](../../../docs/project-log/2026-06-25-Stage-1-Reproduction-Log.md).*
 
 ### 2. Messing with the picture barely matters
 
@@ -60,7 +60,7 @@ Brightness offsets from 0 to 100 kept success at **86–96%**. A tenfold range o
 
 ![Contrast sweep](../figures/contrast-sweep.png)
 
-*Evidence: [`data/contrast_sweep.csv`](../data/contrast-sweep.csv), [`data/brightness_sweep_summary.csv`](../data/brightness-sweep-summary.csv).*
+*Evidence: [`data/contrast-sweep.csv`](../data/contrast-sweep.csv), [`data/brightness-sweep-summary.csv`](../data/brightness-sweep-summary.csv).*
 
 ### 3. Messing with the robot's sense of its own arm destroys it
 
@@ -70,7 +70,7 @@ Robots also track where their own arm is (**proprioception**). Adding a little n
 
 At about 1 cm of noise success held up; at 2 cm it fell under half; at 4 cm it was **4%**; from 8 cm it was **0%**. The camera was never touched. If the model were watching the object, a few centimetres of arm error would be corrected by what it sees. Instead it follows a **memorized motion tied to its own arm position**.
 
-*Evidence: [`data/proprioception_noise_sweep.csv`](../data/proprioception-noise-sweep.csv).*
+*Evidence: [`data/proprioception-noise-sweep.csv`](../data/proprioception-noise-sweep.csv).*
 
 ### 4. Where the model "looks" does not explain what it does
 
@@ -85,7 +85,7 @@ Heat maps of the model's attention told a surprising story, object by object (10
 
 It also worked in both directions. Under arm-state noise the attention pattern stayed **identical** while behavior collapsed. Under contrast changes the attention swung about **tenfold** while behavior stayed **unchanged**. Task success does not track attention either way.
 
-*Evidence: [`data/attention-audit.csv`](../data/attention-audit.csv), the contact sheets and clips in [`evidence/attention-audit/`](../evidence/attention-audit/), and [`docs/guides/reading-attention-videos.md`](../../../docs/guides/reading-attention-videos.md).*
+*Evidence: [`data/attention-audit.csv`](../data/attention-audit.csv), the contact sheets and clips in [`evidence/attention-audit/`](../evidence/attention-audit/), and [`docs/guides/Reading-Attention-Videos.md`](../../../docs/guides/Reading-Attention-Videos.md).*
 
 ### 5. Rearranging the table breaks it, and shows why
 

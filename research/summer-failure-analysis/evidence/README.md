@@ -6,7 +6,7 @@ Primary evidence behind the reports. Three folders:
 |---|---|
 | [`broken-baseline/`](broken-baseline/) | The original 10/100 run caused by the silent dependency bug |
 | [`scene-perturbation-clips/`](scene-perturbation-clips/) | 160 rollout clips from the scene-perturbation experiments |
-| [`attention-audit/`](attention-audit/) | Four attention-heat-map clips (with [`captions.txt`](attention-audit/captions.txt)) and per-object contact sheets from the clean baseline; see [`docs/guides/reading-attention-videos.md`](../../../docs/guides/reading-attention-videos.md) |
+| [`attention-audit/`](attention-audit/) | Four attention-heat-map clips (with [`Captions.txt`](attention-audit/Captions.txt)) and per-object contact sheets from the clean baseline; see [`docs/guides/Reading-Attention-Videos.md`](../../../docs/guides/Reading-Attention-Videos.md) |
 
 ## `broken-baseline/`
 

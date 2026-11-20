@@ -1,6 +1,6 @@
 # Lab-Server Run Scripts
 
-The shell and Python helpers used to run the experiments on the lab's shared GPU server. They are published **as they were used**, so they are machine-specific. Treat them as worked examples of how the sweeps were launched, and adapt them to your own setup. The reusable code is in [`scripts/`](../../scripts/) and [`src/`](../../src/); how to use it is in [`docs/guides/sweeps-and-scene-tooling.md`](../../docs/guides/sweeps-and-scene-tooling.md).
+The shell and Python helpers used to run the experiments on the lab's shared GPU server. They are published **as they were used**, so they are machine-specific. Treat them as worked examples of how the sweeps were launched, and adapt them to your own setup. The reusable code is in [`scripts/`](../../scripts/) and [`src/`](../../src/); how to use it is in [`docs/guides/Sweeps-and-Scene-Tooling.md`](../../docs/guides/Sweeps-and-Scene-Tooling.md).
 
 ## What is machine-specific
 

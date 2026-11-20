@@ -1,6 +1,6 @@
 # Configuration, Outputs and Analysis
 
-Reference for the runner and server settings, the files a run produces, how to analyze attention, and how to reproduce the headline numbers. For first-time setup see the [server guide](../setup/server-setup.md) and [client guide](../setup/client-setup.md).
+Reference for the runner and server settings, the files a run produces, how to analyze attention, and how to reproduce the headline numbers. For first-time setup see the [server guide](../setup/Server-Setup.md) and [client guide](../setup/Client-Setup.md).
 
 ## Configuration reference
 
@@ -46,7 +46,7 @@ python scripts/analyze_attention.py \
     --head_idx 0 --patch_grid_size 16 --top_k 5
 ```
 
-This writes `sample_level_attention_metrics.csv` (all episodes), one per-episode metrics CSV, and front- and wrist-view **heat-map videos** under `heatmaps/`. To read the videos, see [`docs/guides/reading-attention-videos.md`](reading-attention-videos.md); example clips and contact sheets for four objects are in [`research/summer-failure-analysis/evidence/attention-audit/`](../../research/summer-failure-analysis/evidence/attention-audit/). Unreadable NPZ files, or ones without attention data, are skipped with a warning.
+This writes `sample_level_attention_metrics.csv` (all episodes), one per-episode metrics CSV, and front- and wrist-view **heat-map videos** under `heatmaps/`. To read the videos, see [`docs/guides/Reading-Attention-Videos.md`](Reading-Attention-Videos.md); example clips and contact sheets for four objects are in [`research/summer-failure-analysis/evidence/attention-audit/`](../../research/summer-failure-analysis/evidence/attention-audit/). Unreadable NPZ files, or ones without attention data, are skipped with a warning.
 
 ## Reproducing the headline numbers
 
@@ -56,7 +56,7 @@ This writes `sample_level_attention_metrics.csv` (all episodes), one per-episode
 | **91/100** | Pin `transformers==5.3.0`, `torch==2.7.1`, keep `observation.beta: 30` |
 | **94/100** | The same with `include_attentions: true` |
 | **87/100 (clean anchor)** | The same with `observation.beta: 0` |
-| **Contrast and proprioception sweeps** | `scripts/run_sweep.py`, see [`docs/guides/sweeps-and-scene-tooling.md`](sweeps-and-scene-tooling.md) |
-| **Swap and displacement (Stage 3)** | `scripts/run_sweep.py` with [`libero_pi0_scene.yaml`](../../configs/runner/libero_pi0_scene.yaml), see [`docs/guides/object-position-experiments.md`](object-position-experiments.md) |
+| **Contrast and proprioception sweeps** | `scripts/run_sweep.py`, see [`docs/guides/Sweeps-and-Scene-Tooling.md`](Sweeps-and-Scene-Tooling.md) |
+| **Swap and displacement (Stage 3)** | `scripts/run_sweep.py` with [`libero_pi0_scene.yaml`](../../configs/runner/libero_pi0_scene.yaml), see [`docs/guides/Object-Position-Experiments.md`](Object-Position-Experiments.md) |
 
 Run-to-run variation of the clean baseline was 84–87%, so differences of about 4 points are noise. All numbers and their sources are tabulated in [`research/summer-failure-analysis/data/`](../../research/summer-failure-analysis/data/).

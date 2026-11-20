@@ -28,13 +28,13 @@ The 10/100 gap was the **`transformers` library version**. Reproduced the lab ba
 
 **Corrected repo (merged to `main`):** reverted the 3 transformers-5.12 fork patches (SigLIP remap /
 pi_gemma / groot), pinned `transformers==5.3.0` (`requirements-working.txt`), kept the genuine fixes +
-diagnostics, and documented all issues in `docs/project-log/2026-06-25-stage-1-reproduction-log.md`.
+diagnostics, and documented all issues in `docs/project-log/2026-06-25-Stage-1-Reproduction-Log.md`.
 
 **Attention baseline (2026-07-03):** full attention-enabled run scored **94/100**; attention recorded +
 analyzed for all 100 episodes (heatmap videos + per-step metrics). Findings: attention concentration is
 object-dependent (tall bottles sharp, flat objects diffuse) and successes have ~30% more peaked attention
-than failures. Full write-up: `docs/project-log/2026-07-03-baseline-and-attention-findings.md`; reading guide:
-`docs/guides/reading-attention-videos.md`. Artifacts: `outputs/baseline_attn_full/`.
+than failures. Full write-up: `docs/project-log/2026-07-03-Baseline-and-Attention-Findings.md`; reading guide:
+`docs/guides/Reading-Attention-Videos.md`. Artifacts: `outputs/baseline_attn_full/`.
 
 ---
 

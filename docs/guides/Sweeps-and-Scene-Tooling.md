@@ -2,7 +2,7 @@
 
 How to run the controlled-perturbation experiments behind the findings in [`research/summer-failure-analysis/`](../../research/summer-failure-analysis/README.md). This covers the single-factor **sweep driver**, the **proprioception-noise** option, the **scene-perturbation** system, and the helper scripts used on the lab server.
 
-> These tools were developed on the lab's shared server (GPU server "bender") and added to this repository afterwards. They were run there, with the pinned environment from [`requirements-working.txt`](../../requirements-working.txt). Everything in this guide compiles, but running it needs the model server, a GPU and the LIBERO client environment ([`server-setup.md`](../setup/server-setup.md), [`client-setup.md`](../setup/client-setup.md)).
+> These tools were developed on the lab's shared server (GPU server "bender") and added to this repository afterwards. They were run there, with the pinned environment from [`requirements-working.txt`](../../requirements-working.txt). Everything in this guide compiles, but running it needs the model server, a GPU and the LIBERO client environment ([`Server-Setup.md`](../setup/Server-Setup.md), [`Client-Setup.md`](../setup/Client-Setup.md)).
 
 ## The idea: one factor at a time
 
@@ -70,7 +70,7 @@ PROPRIO_NOISE_REF = [0.02, 0.02, 0.02, 0.05, 0.05, 0.05, 0.005, 0.005]
 
 ## Scene perturbations (Stage 3)
 
-Stage 3 perturbs the **world** instead of the observation: object poses are rewritten inside the LIBERO initial state before the simulator adopts it, so the robot really faces a rearranged table. The full mechanics, and why LIBERO-Object needs this, are in [`object-position-experiments.md`](object-position-experiments.md). Configure it with the `scene:` block of [`configs/runner/libero_pi0_scene.yaml`](../../configs/runner/libero_pi0_scene.yaml):
+Stage 3 perturbs the **world** instead of the observation: object poses are rewritten inside the LIBERO initial state before the simulator adopts it, so the robot really faces a rearranged table. The full mechanics, and why LIBERO-Object needs this, are in [`Object-Position-Experiments.md`](Object-Position-Experiments.md). Configure it with the `scene:` block of [`configs/runner/libero_pi0_scene.yaml`](../../configs/runner/libero_pi0_scene.yaml):
 
 | Setting | Meaning |
 |---|---|

@@ -1,6 +1,6 @@
 # Stage 3: Object-Position Perturbations
 
-Why the object-position experiments exist, what LIBERO-Object's scenes really look like, and how [`scene_perturbation.py`](../../src/runner/libero/scene_perturbation.py) rearranges them. For how to run them, see [`sweeps-and-scene-tooling.md`](sweeps-and-scene-tooling.md).
+Why the object-position experiments exist, what LIBERO-Object's scenes really look like, and how [`scene_perturbation.py`](../../src/runner/libero/scene_perturbation.py) rearranges them. For how to run them, see [`Sweeps-and-Scene-Tooling.md`](Sweeps-and-Scene-Tooling.md).
 
 ## Why rearrange the scene?
 

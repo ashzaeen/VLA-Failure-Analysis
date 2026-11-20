@@ -59,7 +59,7 @@ correct version the model scores:
 | | | | **Overall** | **91/100** | **10/100** |
 
 A full list of the pipeline defects found and fixed (8 in total, including two latent code
-bugs) is in `docs/project-log/2026-06-25-stage-1-reproduction-log.md`. Resolving and documenting these is, per
+bugs) is in `docs/project-log/2026-06-25-Stage-1-Reproduction-Log.md`. Resolving and documenting these is, per
 the project plan, itself a Stage 1 research contribution.
 
 ---
@@ -83,7 +83,7 @@ into a **16×16 heatmap** over that view.
 - **peak patch location** — *where* the hottest patch is.
 
 Each episode also gets a **heatmap overlay video** (attention over base + wrist views, per
-timestep, with the peak patch circled). Guide to reading them: `docs/guides/reading-attention-videos.md`.
+timestep, with the peak patch circled). Guide to reading them: `docs/guides/Reading-Attention-Videos.md`.
 
 **Important condition.** These runs keep the reference config's `beta = 30` brightness offset
 (a mild perturbation baked into every frame), matching the 91/100 baseline. A clean `beta = 0`

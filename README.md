@@ -8,7 +8,7 @@ A research project, and the code behind it, on whether the vision-language-actio
 
 The repository holds a pipeline that runs π0 in the LIBERO simulator and records everything, tools that analyze where the model "looks", and the full reports, data and evidence from the study.
 
-> **Just want the results?** Read [`research/summer-failure-analysis/reports/illustrated-report.md`](research/summer-failure-analysis/reports/illustrated-report.md), an illustrated plain-language report.
+> **Just want the results?** Read [`research/summer-failure-analysis/reports/Illustrated-Report.md`](research/summer-failure-analysis/reports/Illustrated-Report.md), an illustrated plain-language report.
 
 **Contents:** [At a glance](#at-a-glance) · [Where to go](#where-to-go) · [Repository layout](#repository-layout) · [What was found](#what-was-found) · [How the study was organized](#how-the-study-was-organized) · [Quick start](#quick-start) · [Going further](#going-further) · [Limitations](#limitations) · [Credits and license](#credits-and-license)
 
@@ -32,13 +32,13 @@ This is evidence from one model on one benchmark; see [Limitations](#limitations
 
 | I want to… | Go to |
 |---|---|
-| Read the results in plain language | [`research/summer-failure-analysis/reports/illustrated-report.md`](research/summer-failure-analysis/reports/illustrated-report.md) |
+| Read the results in plain language | [`research/summer-failure-analysis/reports/Illustrated-Report.md`](research/summer-failure-analysis/reports/Illustrated-Report.md) |
 | Read the full technical report | [`research/summer-failure-analysis/reports/`](research/summer-failure-analysis/reports/) |
 | See the raw numbers | [`research/summer-failure-analysis/data/`](research/summer-failure-analysis/data/) |
 | Watch the experiments | [`research/summer-failure-analysis/evidence/`](research/summer-failure-analysis/evidence/README.md) |
 | Follow the story week by week | [`research/summer-failure-analysis/progress-reports/`](research/summer-failure-analysis/progress-reports/README.md) |
 | Run the pipeline myself | [Quick start](#quick-start) below, then [`docs/setup/`](docs/setup/) |
-| Run the sweeps and scene experiments | [`docs/guides/sweeps-and-scene-tooling.md`](docs/guides/sweeps-and-scene-tooling.md) |
+| Run the sweeps and scene experiments | [`docs/guides/Sweeps-and-Scene-Tooling.md`](docs/guides/Sweeps-and-Scene-Tooling.md) |
 | Find a specific document | [`docs/README.md`](docs/README.md) |
 
 ## Repository layout
@@ -48,7 +48,7 @@ This is evidence from one model on one benchmark; see [Limitations](#limitations
 ├── README.md · LICENSE · CLAUDE.md · requirements-working.txt
 │
 ├── research/              The two studies, each self-contained
-│   ├── literature.md        Papers the work builds on
+│   ├── Literature.md        Papers the work builds on
 │   ├── spring-robustness-study/    Spring 2026: π0 on LIBERO-plus (proposal, abstract, poster, code)
 │   └── summer-failure-analysis/    Summer 2026: does π0 look, or remember?
 │       ├── reports/           Illustrated report (start here), technical report, plain-language summary
@@ -80,7 +80,7 @@ This is evidence from one model on one benchmark; see [Limitations](#limitations
 
 ## What was found
 
-**1. A silent bug nearly invalidated the project.** The inherited pipeline scored **10/100** with no error. A wrong library version (`transformers 5.12.1`) made the vision encoder **silently load random weights**. Pinning `transformers==5.3.0` restored a 91/100 baseline; the clean baseline settled at **87/100**. *If you reproduce this work, that pin is the most important thing to get right.* See [`requirements-working.txt`](requirements-working.txt) and the [reproduction log](docs/project-log/2026-06-25-stage-1-reproduction-log.md).
+**1. A silent bug nearly invalidated the project.** The inherited pipeline scored **10/100** with no error. A wrong library version (`transformers 5.12.1`) made the vision encoder **silently load random weights**. Pinning `transformers==5.3.0` restored a 91/100 baseline; the clean baseline settled at **87/100**. *If you reproduce this work, that pin is the most important thing to get right.* See [`requirements-working.txt`](requirements-working.txt) and the [reproduction log](docs/project-log/2026-06-25-Stage-1-Reproduction-Log.md).
 
 **2. Changing the picture does almost nothing.** Brightness offsets from 0 to 100 kept success at **86–96%**; a tenfold range of contrast kept it at **72–97%**.
 
@@ -90,7 +90,7 @@ This is evidence from one model on one benchmark; see [Limitations](#limitations
 
 ![Proprioception noise sweep](research/summer-failure-analysis/figures/proprioception-noise-sweep.png)
 
-**4. Where the model looks doesn't explain what it does.** Attention heat maps showed the model looking at a background band (alphabet soup) or at a *nearby bottle* (orange juice) while still succeeding. Under arm-state noise attention stayed identical while behavior collapsed; under contrast changes attention swung about tenfold while behavior stayed unchanged. See the [attention findings](docs/project-log/2026-07-03-baseline-and-attention-findings.md) and [clips](research/summer-failure-analysis/evidence/attention-audit/).
+**4. Where the model looks doesn't explain what it does.** Attention heat maps showed the model looking at a background band (alphabet soup) or at a *nearby bottle* (orange juice) while still succeeding. Under arm-state noise attention stayed identical while behavior collapsed; under contrast changes attention swung about tenfold while behavior stayed unchanged. See the [attention findings](docs/project-log/2026-07-03-Baseline-and-Attention-Findings.md) and [clips](research/summer-failure-analysis/evidence/attention-audit/).
 
 **5. Rearranging the table breaks it, and shows why.** LIBERO-Object uses **six fixed object slots**, and the target always occupies one of just **two**. Rewriting the scene directly:
 
@@ -156,16 +156,16 @@ cd "$VLA_FAILURE_ANALYSIS_ROOT" && conda activate libero && export PYTHONPATH="$
 python scripts/run_libero_eval.py --config configs/runner/libero_pi0.yaml
 ```
 
-Full guides, including a UR5 server config: [`docs/setup/server-setup.md`](docs/setup/server-setup.md) and [`docs/setup/client-setup.md`](docs/setup/client-setup.md).
+Full guides, including a UR5 server config: [`docs/setup/Server-Setup.md`](docs/setup/Server-Setup.md) and [`docs/setup/Client-Setup.md`](docs/setup/Client-Setup.md).
 
 ## Going further
 
 | Topic | Guide |
 |---|---|
-| Every setting, the files a run writes, the attention metrics, and how to reproduce 10 → 91 → 94 → 87 | [`docs/guides/configuration-and-outputs.md`](docs/guides/configuration-and-outputs.md) |
-| Single-factor sweeps, proprioception noise, and the scene-perturbation system | [`docs/guides/sweeps-and-scene-tooling.md`](docs/guides/sweeps-and-scene-tooling.md) |
-| Why and how the object-position experiments work (the six-slot finding) | [`docs/guides/object-position-experiments.md`](docs/guides/object-position-experiments.md) |
-| Reading the attention heat-map videos | [`docs/guides/reading-attention-videos.md`](docs/guides/reading-attention-videos.md) |
+| Every setting, the files a run writes, the attention metrics, and how to reproduce 10 → 91 → 94 → 87 | [`docs/guides/Configuration-and-Outputs.md`](docs/guides/Configuration-and-Outputs.md) |
+| Single-factor sweeps, proprioception noise, and the scene-perturbation system | [`docs/guides/Sweeps-and-Scene-Tooling.md`](docs/guides/Sweeps-and-Scene-Tooling.md) |
+| Why and how the object-position experiments work (the six-slot finding) | [`docs/guides/Object-Position-Experiments.md`](docs/guides/Object-Position-Experiments.md) |
+| Reading the attention heat-map videos | [`docs/guides/Reading-Attention-Videos.md`](docs/guides/Reading-Attention-Videos.md) |
 | The scripts used on the lab server (sweep launchers, GPU watcher) | [`tools/lab-server/README.md`](tools/lab-server/README.md) |
 | Everything else, indexed | [`docs/README.md`](docs/README.md) |
 
@@ -179,11 +179,11 @@ The sweep and scene tooling was developed on the lab's shared server and added h
 - **Run-to-run noise.** Clean baselines were 84%, 86% and 87%, and each sweep used a single seed.
 - **State is partly recoverable from the wrist camera**, so a small drop under state noise would not alone prove the model ignores state.
 - **The tables in `research/summer-failure-analysis/data/` were transcribed from the weekly reports**, not regenerated from raw per-run files, which stay on the lab server.
-- **Inherited-code quirks** are documented in [`docs/setup/client-setup.md`](docs/setup/client-setup.md); for example, `LiberoEvaluator.evaluate()` runs from task ID 8 to the end of the suite.
+- **Inherited-code quirks** are documented in [`docs/setup/Client-Setup.md`](docs/setup/Client-Setup.md); for example, `LiberoEvaluator.evaluate()` runs from task ID 8 to the end of the suite.
 
 ## Credits and license
 
-Work by **Ashzaeen Fatmi Khan** in the **Robotic Vision Laboratory, University of Texas at Arlington**, advised by **Dr. William Beksi**, with **Zongyao Lyu** as graduate mentor. The preliminary pipeline and experiments this work extends came from the lab. The model is **π0** from Physical Intelligence; the benchmark is **LIBERO**. Papers this work builds on are in [`research/literature.md`](research/literature.md).
+Work by **Ashzaeen Fatmi Khan** in the **Robotic Vision Laboratory, University of Texas at Arlington**, advised by **Dr. William Beksi**, with **Zongyao Lyu** as graduate mentor. The preliminary pipeline and experiments this work extends came from the lab. The model is **π0** from Physical Intelligence; the benchmark is **LIBERO**. Papers this work builds on are in [`research/Literature.md`](research/Literature.md).
 
 **License.** Original work in this repository is released under the [MIT License](LICENSE). Third-party code vendored under [`vlas/`](vlas/) keeps its own license: LeRobot is Apache 2.0 ([`vlas/lerobot/LICENSE`](vlas/lerobot/LICENSE)), and the OpenVLA-OFT files are copied from [moojink/openvla-oft](https://github.com/moojink/openvla-oft) and remain under that project's terms.
 

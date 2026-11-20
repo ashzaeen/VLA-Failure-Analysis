@@ -5,7 +5,7 @@ procedure for the objectVLA LIBERO client.
 
 For model server environment setup and startup instructions, see:
 
-- LeRobot server: [`docs/setup/server-setup.md`](server-setup.md)
+- LeRobot server: [`docs/setup/Server-Setup.md`](Server-Setup.md)
 
 ## Client Responsibilities
 
@@ -98,7 +98,7 @@ logging:
 ## Startup
 
 First, start the LeRobot LIBERO server according to
-[`docs/setup/server-setup.md`](server-setup.md). Then run the following commands in another
+[`docs/setup/Server-Setup.md`](Server-Setup.md). Then run the following commands in another
 terminal:
 
 ```bash

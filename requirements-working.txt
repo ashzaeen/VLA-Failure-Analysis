@@ -11,7 +11,7 @@
 #   5.12.1) — which loads the SigLIP vision tower with the wrong key layout and silently
 #   degrades vision -> ~10/100 success. transformers==5.3.0 is the version where the
 #   checkpoint's `vision_tower.vision_model.*` keys load natively (0 missing keys) AND the
-#   groot / pi_gemma code paths still work. See docs/project-log/2026-06-25-stage-1-reproduction-log.md.
+#   groot / pi_gemma code paths still work. See docs/project-log/2026-06-25-Stage-1-Reproduction-Log.md.
 #
 # Python 3.12. Install torch from the cu128 index to match the A40 driver:
 #   pip install torch==2.7.1 torchvision==0.22.1 --index-url https://download.pytorch.org/whl/cu128
