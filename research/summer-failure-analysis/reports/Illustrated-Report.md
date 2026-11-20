@@ -109,7 +109,7 @@ So the scene itself was rearranged:
 2. **This is a limit of the test as well as the model.** A fixed six-spot grid with two target spots rewards a robot that never looks.
 3. **High LIBERO-Object scores are weak evidence of understanding**, including this project's own 87–94% baselines.
 
-This also fits the spring result, [presented at Innovation Day](../../spring-robustness-study/): the model coped with moved *objects* but struggled when the *robot or camera* was moved, which is exactly what an arm-anchored policy would do.
+This also fits the spring result, [presented at the CRA Undergraduate Conference](../../spring-robustness-study/): the model coped with moved *objects* but struggled when the *robot or camera* was moved, which is exactly what an arm-anchored policy would do.
 
 ## What This Does *Not* Show
 
