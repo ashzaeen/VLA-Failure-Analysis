@@ -2,7 +2,7 @@
 
 **A plain-language report on failure analysis and object grounding in the π0 robot model**
 
-*Ashzaeen Fatmi Khan · Robotic Vision Laboratory, UT Arlington · Advisor: Dr. William Beksi · Graduate mentor: Zongyao Lyu · Spring – Summer 2026*
+*Ashzaeen Fatmi Khan · Robotic Vision Laboratory, UT Arlington · Advisor: Dr. William Beksi · Graduate mentor: Dr. Zongyao Lyu · Spring – Summer 2026*
 
 > [!NOTE]
 > This is the readable version. For the full methods, every table and the limitations, see the [technical report](Technical-Report.pdf). For a shorter, jargon-free version, see the [plain-language summary](Plain-Language-Summary.pdf).
