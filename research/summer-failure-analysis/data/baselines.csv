@@ -1,0 +1,5 @@
+configuration,transformers_version,brightness_offset,attention_capture,success,episodes,source_report
+Inherited pipeline (with June patches),5.12.1,30,no,10,100,2026-07-03-Week-08.pdf
+Pinned environment,5.3.0,30,no,91,100,2026-07-03-Week-08.pdf
+Pinned environment with attention capture,5.3.0,30,yes,94,100,2026-07-03-Week-08.pdf
+Clean baseline (the anchor),5.3.0,0,no,87,100,2026-07-10-Week-09.pdf

@@ -4,7 +4,7 @@
 # `exec >` sends all output to a log so progress survives disconnection.
 exec > ~/sweep_all_full.log 2>&1
 echo "===== SWEEP_ALL_FULL START $(date) ====="
-bash ~/sweep_proprio_full.sh
+bash ~/sweep_proprioception_full.sh
 echo "----- proprio finished, starting contrast $(date) -----"
 bash ~/sweep_contrast_full.sh
 echo "===== SWEEP_ALL_FULL DONE $(date) ====="

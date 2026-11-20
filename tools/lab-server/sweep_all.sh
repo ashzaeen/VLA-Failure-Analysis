@@ -5,5 +5,5 @@ exec > ~/sweep_all.log 2>&1
 echo "===== SWEEP_ALL START $(date) ====="
 bash ~/sweep_contrast.sh
 echo "----- contrast finished, starting proprio $(date) -----"
-bash ~/sweep_proprio.sh
+bash ~/sweep_proprioception.sh
 echo "===== SWEEP_ALL DONE $(date) ====="
