@@ -10,3 +10,5 @@ Two studies of the π0 vision-language-action model, both run in the Robotic Vis
 **How they connect.** Spring found that π0 survives moved *objects* but not a moved *robot start* or *camera*. Summer tested that suspicion directly with single-factor perturbations of the image, the robot's own state and the scene itself.
 
 [`Literature.md`](Literature.md) lists the papers both studies build on.
+
+Both studies also have an interactive brief, published at [https://ashzaeen.github.io/VLA-Failure-Analysis/](https://ashzaeen.github.io/VLA-Failure-Analysis/) (source in [`../site/`](../site/)).

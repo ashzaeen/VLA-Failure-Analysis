@@ -32,6 +32,7 @@ This is evidence from one model on one benchmark; see [Limitations](#limitations
 
 | I want to… | Go to |
 |---|---|
+| Read the two interactive research briefs online | [https://ashzaeen.github.io/VLA-Failure-Analysis/](https://ashzaeen.github.io/VLA-Failure-Analysis/) |
 | Read the results in plain language | [`research/summer-failure-analysis/reports/Illustrated-Report.md`](research/summer-failure-analysis/reports/Illustrated-Report.md) |
 | Read the full technical report | [`research/summer-failure-analysis/reports/`](research/summer-failure-analysis/reports/) |
 | See the raw numbers | [`research/summer-failure-analysis/data/`](research/summer-failure-analysis/data/) |
@@ -47,6 +48,7 @@ This is evidence from one model on one benchmark; see [Limitations](#limitations
 .
 ├── README.md · LICENSE · CLAUDE.md · requirements-working.txt
 │
+├── site/                  The two research briefs, published with GitHub Pages
 ├── research/              The two studies, each self-contained
 │   ├── Literature.md        Papers the work builds on
 │   ├── spring-robustness-study/    Spring 2026: π0 on LIBERO-plus (proposal, abstract, poster, code)
