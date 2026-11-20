@@ -6,7 +6,7 @@ Everything produced by the summer **π0 failure-analysis and object-grounding st
 
 **Headline:** π0 scores 84–94% on LIBERO-Object, but three independent experiments suggest it gets there by going to the right *place* with the right *motion*, not by finding the right *object*.
 
-## What's in this folder
+## What's in This Folder
 
 ```text
 summer-failure-analysis/
@@ -23,7 +23,7 @@ summer-failure-analysis/
 
 The papers this work builds on are in [`../Literature.md`](../Literature.md). The code that produced these results is documented in [`docs/guides/Sweeps-and-Scene-Tooling.md`](../../docs/guides/Sweeps-and-Scene-Tooling.md) and [`docs/guides/Object-Position-Experiments.md`](../../docs/guides/Object-Position-Experiments.md), with the lab-server run scripts in [`tools/lab-server/`](../../tools/lab-server/README.md). The repository [README](../../README.md) explains how to run the pipeline.
 
-## Evidence map: claim → numbers → proof
+## Evidence Map: Claim → Numbers → Proof
 
 | # | Claim | Numbers | Where to look |
 |---|---|---|---|
@@ -34,7 +34,7 @@ The papers this work builds on are in [`../Literature.md`](../Literature.md). Th
 | 5 | Swapping or moving the target collapses success; moving distractors does not | [`scene-perturbations.csv`](data/scene-perturbations.csv) | [`evidence/scene-perturbation-clips/`](evidence/scene-perturbation-clips/), [Aug 21 update](progress-reports/2026-08-21-Progress-Update.pdf), [presentation](presentation/) |
 | 6 | LIBERO-Object places all objects on the same six spots, so it cannot separate grounding from memorization | (described in the reports) | [technical report §9](reports/Technical-Report.pdf), [Aug 21 update](progress-reports/2026-08-21-Progress-Update.pdf) |
 
-## Reading guide
+## Reading Guide
 
 | If you are… | Read |
 |---|---|

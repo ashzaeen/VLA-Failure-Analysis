@@ -2,7 +2,7 @@
 
 Everything in `docs/`, grouped by what you are trying to do. For the research results themselves, see [`../research/`](../research/README.md).
 
-## Setup: get the pipeline running
+## Setup: Get the Pipeline Running
 
 | Document | Covers |
 |---|---|
@@ -11,7 +11,7 @@ Everything in `docs/`, grouped by what you are trying to do. For the research re
 
 The one thing to get right is the `transformers==5.3.0` pin; see [`../requirements-working.txt`](../requirements-working.txt).
 
-## Guides: how to do things
+## Guides: How to Do Things
 
 | Document | Covers |
 |---|---|
@@ -20,7 +20,7 @@ The one thing to get right is the `transformers==5.3.0` pin; see [`../requiremen
 | [`guides/Object-Position-Experiments.md`](guides/Object-Position-Experiments.md) | Why and how the Stage 3 object-position experiments work, including the six-slot finding |
 | [`guides/Reading-Attention-Videos.md`](guides/Reading-Attention-Videos.md) | How to read the attention heat-map videos |
 
-## Project log: the working record
+## Project Log: The Working Record
 
 Written as the work happened, in order, and kept as it was.
 
@@ -33,8 +33,9 @@ Written as the work happened, in order, and kept as it was.
 | [`project-log/2026-07-14-Baseline-and-Brightness-Progress.md`](project-log/2026-07-14-Baseline-and-Brightness-Progress.md) | Baseline and brightness-sweep progress report |
 | [`project-log/2026-07-14-Stages-1-2-Progress-Report.md`](project-log/2026-07-14-Stages-1-2-Progress-Report.md) | Stages 1–2 progress report, July 14, 2026 |
 
-## Elsewhere in the repository
+## Elsewhere in the Repository
 
+- [`assets/readme/`](assets/readme/): the hero and button images used by the main README.
 - [`../tools/lab-server/README.md`](../tools/lab-server/README.md): the run scripts used on the lab server.
 - [`../research/summer-failure-analysis/progress-reports/`](../research/summer-failure-analysis/progress-reports/README.md): the weekly progress reports sent to the advisor.
 - [`../research/Literature.md`](../research/Literature.md): the papers this work builds on.

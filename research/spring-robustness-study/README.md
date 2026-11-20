@@ -2,7 +2,7 @@
 
 The spring project evaluated the zero-shot robustness of π0 against the LIBERO-plus benchmark, which adds controlled perturbations on a difficulty scale. It was presented at the **UTA College of Engineering Innovation Day (April 14, 2026)**, and is the starting point for the summer failure analysis.
 
-## Result in one table
+## Result in One Table
 
 | Perturbation category | Result | Pattern |
 |---|---|---|

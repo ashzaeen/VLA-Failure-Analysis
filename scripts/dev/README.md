@@ -1,4 +1,4 @@
-# Developer utilities
+# Developer Utilities
 
 One-off helpers used during development. They are not part of the main pipeline, and several read local checkpoint or output folders that are not in this repository, so paths inside them are meant to be edited.
 

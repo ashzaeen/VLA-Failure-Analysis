@@ -1,4 +1,4 @@
-## Summer Research Plan: Failure Analysis and Object Grounding in VLA Models 
+# Summer Research Plan: Failure Analysis and Object Grounding in VLA Models 
 
 ## **Project Motivation** 
 

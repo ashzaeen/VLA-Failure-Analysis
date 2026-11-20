@@ -2,7 +2,7 @@
 
 Reference for the runner and server settings, the files a run produces, how to analyze attention, and how to reproduce the headline numbers. For first-time setup see the [server guide](../setup/Server-Setup.md) and [client guide](../setup/Client-Setup.md).
 
-## Configuration reference
+## Configuration Reference
 
 The client is configured by [`configs/runner/libero_pi0.yaml`](../../configs/runner/libero_pi0.yaml). The settings you will touch most:
 
@@ -22,7 +22,7 @@ The client is configured by [`configs/runner/libero_pi0.yaml`](../../configs/run
 
 The server is configured by [`configs/server/`](../../configs/server/); by default it listens on `127.0.0.1:8001` in `float16` on CUDA.
 
-## What gets recorded
+## What Gets Recorded
 
 Each run writes to `experiment.output_dir`:
 
@@ -35,7 +35,7 @@ outputs/<run>/
 
 Each NPZ holds the task description, initial state, success flag, actions (raw and processed), per-step **attention maps**, front and wrist images, and optional flow velocities, NLL values and hidden states.
 
-## Analyzing attention
+## Analyzing Attention
 
 For each frame, the last layer's action-query attention is sliced into the **256 base-camera** and **256 wrist-camera** image-patch tokens and reshaped into a **16×16 heat map**. From it, four numbers are computed: **peak attention**, **entropy** (how spread out), **Gini coefficient** (how unequal), and **top-k patch share** (how much of the attention sits on the k strongest patches).
 
@@ -48,7 +48,7 @@ python scripts/analyze_attention.py \
 
 This writes `sample_level_attention_metrics.csv` (all episodes), one per-episode metrics CSV, and front- and wrist-view **heat-map videos** under `heatmaps/`. To read the videos, see [`docs/guides/Reading-Attention-Videos.md`](Reading-Attention-Videos.md); example clips and contact sheets for four objects are in [`research/summer-failure-analysis/evidence/attention-audit/`](../../research/summer-failure-analysis/evidence/attention-audit/). Unreadable NPZ files, or ones without attention data, are skipped with a warning.
 
-## Reproducing the headline numbers
+## Reproducing the Headline Numbers
 
 | Number | How to get it |
 |---|---|

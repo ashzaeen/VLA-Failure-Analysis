@@ -281,7 +281,7 @@ foundation that every later "what makes the robot fail?" experiment will stand o
 
 ---
 
-# Update (2026-07-02) — The Real Root Cause, and the Corrected Baseline
+## Update (2026-07-02) — The Real Root Cause, and the Corrected Baseline
 
 **Headline:** the model was only succeeding **10 times out of 100**. After a full
 investigation we found the cause was **one wrong library version** (`transformers`), fixed
