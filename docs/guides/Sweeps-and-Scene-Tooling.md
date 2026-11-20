@@ -4,7 +4,7 @@ How to run the controlled-perturbation experiments behind the findings in [`rese
 
 > These tools were developed on the lab's shared server (GPU server "bender") and added to this repository afterwards. They were run there, with the pinned environment from [`requirements-working.txt`](../../requirements-working.txt). Everything in this guide compiles, but running it needs the model server, a GPU and the LIBERO client environment ([`Server-Setup.md`](../setup/Server-Setup.md), [`Client-Setup.md`](../setup/Client-Setup.md)).
 
-## The idea: one factor at a time
+## The Idea: One Factor at a Time
 
 Every experiment changes **exactly one** setting and holds everything else, including the random seed, fixed. Where possible a **no-op condition** runs the whole pipeline while changing nothing, so a bug in the harness shows up before it can contaminate a real result.
 
@@ -16,7 +16,7 @@ Every experiment changes **exactly one** setting and holds everything else, incl
 | 2 | Robot state frozen to a fixed pose | `observation.test_zero_proprio` | same |
 | 3 | **Object positions in the scene** | `scene.mode`, `scene.distance` | [`scene_perturbation.py`](../../src/runner/libero/scene_perturbation.py) |
 
-## The sweep driver
+## The Sweep Driver
 
 [`scripts/run_sweep.py`](../../scripts/run_sweep.py) loads a base runner YAML, overrides **one** parameter across a list of values, runs the LIBERO evaluator for each condition, and writes a per-condition success summary.
 
@@ -41,7 +41,7 @@ python scripts/run_sweep.py \
 
 The same pattern reproduces the **brightness** sweep (`--param observation.beta --values 0,10,...,100`).
 
-### The sweeps behind the report
+### The Sweeps Behind the Report
 
 | Sweep | Parameter | Values | Fixed |
 |---|---|---|---|
@@ -58,7 +58,7 @@ logging.save_episode_npz=true,logging.save_rollout_video=true,logging.save_atten
 
 The shell wrappers that ran these on the lab server are in [`tools/lab-server/`](../../tools/lab-server/README.md).
 
-## Proprioception noise
+## Proprioception Noise
 
 The robot state is 8-dimensional (end-effector position in metres, orientation in radians, gripper), so a raw noise number would mean different things on different dimensions. Instead, zero-mean Gaussian noise is scaled **per dimension** by a fixed physical reference vector:
 
@@ -68,7 +68,7 @@ PROPRIO_NOISE_REF = [0.02, 0.02, 0.02, 0.05, 0.05, 0.05, 0.005, 0.005]
 
 `observation.proprio_noise_std` is a **unitless multiplier** on that vector. So `std = 1` injects about 2 cm of positional noise, 0.05 rad of orientation noise and 0.005 of gripper noise (1σ); `std = 2` is about 4 cm. The noise has its own seeded generator (`observation.proprio_noise_seed`), independent of the global seed, so holding it fixed while sweeping `std` changes only the magnitude. The camera image is never touched.
 
-## Scene perturbations (Stage 3)
+## Scene Perturbations (Stage 3)
 
 Stage 3 perturbs the **world** instead of the observation: object poses are rewritten inside the LIBERO initial state before the simulator adopts it, so the robot really faces a rearranged table. The full mechanics, and why LIBERO-Object needs this, are in [`Object-Position-Experiments.md`](Object-Position-Experiments.md). Configure it with the `scene:` block of [`configs/runner/libero_pi0_scene.yaml`](../../configs/runner/libero_pi0_scene.yaml):
 
@@ -103,15 +103,15 @@ python scripts/run_sweep.py --base configs/runner/libero_pi0_scene.yaml \
 
 Run the **no-op anchor first**. At distance 0 the scene is rewritten but not moved, so it must reproduce the clean baseline; if it does not, the harness is broken and nothing else should be trusted.
 
-### Two supporting scripts
+### Two Supporting Scripts
 
 - [`scripts/validate_scene_perturbation.py`](../../scripts/validate_scene_perturbation.py): a **physics sanity check** that needs no policy server. It applies each condition, lets the simulator settle, and reports drift, falls and the closest pair of objects, so a placement that floats or interpenetrates cannot silently confound a success rate. The reported runs passed 42/42 condition-episodes.
 - [`scripts/analyze_scene_failures.py`](../../scripts/analyze_scene_failures.py): classifies each episode by **what the robot actually disturbed**: the `decoy` now sitting in the target's usual slot (the position-shortcut signature), the `target`, `other`, or `none`.
 
-## Output files
+## Output Files
 
 Each condition writes a folder with `results.json` (one record per episode, including a `scene` block with the start and final object positions and the objects the robot disturbed) and a `success.json` summary. Rollout videos no longer require NPZ saving: frames are now collected whenever **either** `save_rollout_video` or `save_episode_npz` is on, which removed a defect that forced about 100 MB of NPZ output per episode on anyone who only wanted videos (the 160 Stage 3 clips together total 19 MB).
 
-## Where the results are
+## Where the Results Are
 
 All findings produced with these tools, as numbers, charts, clips and reports, are in [`research/summer-failure-analysis/`](../../research/summer-failure-analysis/README.md). The 160 Stage 3 clips are in [`research/summer-failure-analysis/evidence/scene-perturbation-clips/`](../../research/summer-failure-analysis/evidence/scene-perturbation-clips/).

@@ -6,7 +6,7 @@
 
 ---
 
-## Why this guide exists
+## Why This Guide Exists
 
 The central question of this project is: **does π0 actually look at the object it was told
 to pick up, or does it succeed by memorizing positions and movements?** The attention
@@ -16,7 +16,7 @@ interpret them, and — most importantly — how to decide what they *mean*.
 
 ---
 
-## 1. What you are looking at
+## 1. What You Are Looking at
 
 Each video is **one episode** — one attempt at one task (e.g. "pick up the orange juice and
 place it in the basket"), played back frame by frame. Watching it is like **watching where
@@ -29,7 +29,7 @@ the robot's eyes go** while it works. Every frame has three parts:
 - **Top strip — the raw attention numbers** (action tokens × key tokens). Mostly ignore this
   for intuition; it is the same information in raw form.
 
-## 2. What "attention" means
+## 2. What "Attention" Means
 
 The model sees each camera image as a grid of little squares ("patches"). For every action
 it decides, it effectively asks *"which parts of the image mattered for this decision?"*
@@ -41,7 +41,7 @@ Attention is the model's own answer.
 
 So the heatmap literally shows **where the model's attention went** at that moment.
 
-## 3. The one number that matters most: `max`
+## 3. The One Number That Matters Most: `max`
 
 Each panel shows a `max:` value (e.g. orange juice base `max: 0.28`, alphabet soup
 `max: 0.058`). It is **how strong the strongest spot is**, which tells you *how focused* the
@@ -55,7 +55,7 @@ both are just numeric versions of "focused vs. spread": low entropy / high Gini 
 high entropy / low Gini = spread out. `top5_share` = what fraction of all attention the 5
 hottest patches got.)
 
-## 4. The core question you ask while watching
+## 4. The Core Question You Ask While Watching
 
 Just one:
 
@@ -68,7 +68,7 @@ While the video plays, track the green circle / red blob and ask:
 2. **Is it focused or smeared?** (the `max` value and how tight the blob is)
 3. **Does it follow the target** as the arm moves, or does it wander?
 
-## 5. How to decide what it means — the 2×2
+## 5. How to Decide What It Means — The 2×2
 
 Attention on its own doesn't tell you much. The trick is to **pair "where it looked" with
 "did the episode succeed"**. That gives four cases:
@@ -81,7 +81,7 @@ Attention on its own doesn't tell you much. The trick is to **pair "where it loo
 The **🔴 red box is the most important for this project**: success *without* looking at the
 target is the fingerprint of a shortcut.
 
-## 6. Two rules that keep the analysis honest
+## 6. Two Rules That Keep the Analysis Honest
 
 - **Watch the whole video, not one frame.** Attention shifts over time — early on it often
   scans broadly (approach phase) and may tighten near the grasp. A single mid-episode frame
@@ -91,7 +91,7 @@ target is the fingerprint of a shortcut.
   movement carried it. So "attention was not on the target" *flags* a possible shortcut — it
   does not *prove* one.
 
-## 7. Where this leads — the real test
+## 7. Where This Leads — The Real Test
 
 A single video can only *suggest* grounding vs. shortcut. The decisive experiment (Stage 2/3)
 is **comparison — move the target object and re-watch:**
@@ -103,7 +103,7 @@ is **comparison — move the target object and re-watch:**
 Attention videos give you the *hypothesis*; moving things around and re-measuring gives you
 the *proof*.
 
-## 8. Worked examples (from the 10-episode attention run, 2026-07-03)
+## 8. Worked Examples (From the 10-Episode Attention Run, 2026-07-03)
 
 | Object | Base `max` | Where attention landed | Outcome | Reading |
 | --- | --- | --- | --- | --- |
@@ -116,7 +116,7 @@ Takeaways from this small sample: attention is **sharp and on-target for distinc
 bottles**, but **diffuse for flat/boxy objects** — yet those still often succeed, which is the
 shortcut smell. The one failure lined up with **attention split across similar distractors**.
 
-## 9. How to regenerate these videos
+## 9. How to Regenerate These Videos
 
 Attention must be recorded during the rollout (it is *not* in the plain baseline, which ran
 with `include_attentions: false`). Two steps:

@@ -2,14 +2,14 @@
 
 The shell and Python helpers used to run the experiments on the lab's shared GPU server. They are published **as they were used**, so they are machine-specific. Treat them as worked examples of how the sweeps were launched, and adapt them to your own setup. The reusable code is in [`scripts/`](../../scripts/) and [`src/`](../../src/); how to use it is in [`docs/guides/Sweeps-and-Scene-Tooling.md`](../../docs/guides/Sweeps-and-Scene-Tooling.md).
 
-## What is machine-specific
+## What Is Machine-Specific
 
 - They assume the repo lives at `~/projects/vla-failure-analysis` and a Conda env named `vla-libero` under `~/miniconda3`.
 - They expect the policy server already running on `127.0.0.1:8001`, started by a launcher (`~/start_server.sh` or `~/start_server_gpu1.sh`) that is **not** included.
 - The server and client run in separate `tmux` sessions on separate GPUs (`CUDA_VISIBLE_DEVICES`), and outputs go under `outputs/`.
 - They have no secrets and no remote addresses other than localhost health checks.
 
-## Sweep drivers
+## Sweep Drivers
 
 | Script | What it does |
 |---|---|
@@ -21,13 +21,13 @@ The shell and Python helpers used to run the experiments on the lab's shared GPU
 | [`sweep_summary.sh`](sweep_summary.sh) | Summarizes the brightness-with-attention sweep (success and attention peak/entropy per offset) into `SWEEP_SUMMARY.csv` |
 | [`sweep_validate.sh`](sweep_validate.sh) | A fast sanity run: one proprioception-noise condition, 1 trial per task (10 episodes), to prove the perturbation, client and server round-trip before a full sweep |
 
-## GPU housekeeping
+## GPU Housekeeping
 
 | Script | What it does |
 |---|---|
 | [`sweep_reaper.sh`](sweep_reaper.sh) | The **detached watcher**: waits for a full sweep and, **only if it completed cleanly**, tears down the policy server and its compile workers so the shared GPU is not left idle. If the sweep crashed it leaves the server up for inspection |
 
-## Stage 3 scene experiments
+## Stage 3 Scene Experiments
 
 | Script | What it does |
 |---|---|
@@ -39,7 +39,7 @@ The shell and Python helpers used to run the experiments on the lab's shared GPU
 | [`scene_watch_smoke.sh`](scene_watch_smoke.sh) | Block until the smoke sweep finishes, then print every per-condition result |
 | [`scene_finish_smoke.sh`](scene_finish_smoke.sh) | Wait for the video run, report each condition's success rate, classify which objects the robot disturbed, and package the rollout videos into one archive |
 
-## Attention helpers (contrast sweep)
+## Attention Helpers (Contrast Sweep)
 
 | Script | What it does |
 |---|---|

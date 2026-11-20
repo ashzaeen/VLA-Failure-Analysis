@@ -147,7 +147,7 @@ The `include_attentions: false` branch reads the tuple by index and tolerates an
 
 ## Current bender setup (state we can resume from)
 
-- **Server GPU box:** RVL "bender", 2× A40. SSH via `ssh.rvlserver.com` (Windows OpenSSH + cloudflared;
+- **Server GPU box:** RVL "bender", 2× A40. SSH through the lab's gateway (host name not published here;
   use PowerShell, not Git Bash).
 - **Pristine lab repo:** `~/projects/vla-failure-analysis-lab` (unmodified code; checkpoint symlinked to
   `~/projects/vla-failure-analysis/pi0_libero_finetuned_v044`).

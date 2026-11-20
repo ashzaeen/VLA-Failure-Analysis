@@ -20,7 +20,7 @@
 
 This repository holds two studies of the vision-language-action model **π0**, both run in 2026 at the Robotic Vision Laboratory: a short **spring** robustness evaluation on LIBERO-plus, and a larger **summer** failure analysis on LIBERO-Object that tests whether π0 finds the instructed object or goes to a memorized place. The summer study is the main subject. The repository also holds the pipeline that runs π0 in the LIBERO simulator and records every episode, tools that show where the model looks, and the reports, data and video clips from both studies.
 
-**Contents:** [Spring Research](#spring-research-robustness-on-libero-plus) · [The Short Answer](#the-short-answer) · [What Was Found](#what-was-found) · [Where to Go](#where-to-go) · [Repository Layout](#repository-layout) · [How the Study Was Organized](#how-the-study-was-organized) · [Quick Start](#quick-start) · [Limitations](#limitations) · [Credits and License](#credits-and-license)
+**Contents:** [Spring Research](#spring-research-robustness-on-libero-plus) · [The Short Answer](#the-short-answer) · [What the Summer Study Found](#what-the-summer-study-found) · [Where to Go](#where-to-go) · [Repository Layout](#repository-layout) · [How the Summer Study Was Organized](#how-the-summer-study-was-organized) · [Quick Start](#quick-start) · [Going Further](#going-further) · [Limitations](#limitations) · [Credits and License](#credits-and-license)
 
 ---
 
@@ -52,7 +52,7 @@ The summer study started from a simple observation: π0 scores **84–94%** on L
 
 This is evidence from one model on one benchmark. See [Limitations](#limitations).
 
-## What Was Found
+## What the Summer Study Found
 
 **1. A silent bug nearly invalidated the project.** The inherited pipeline scored **10/100** with no error. A wrong library version (`transformers 5.12.1`) made the vision encoder **silently load random weights**. Pinning `transformers==5.3.0` restored a 91/100 baseline; the clean baseline settled at **87/100**. *If you reproduce this work, that pin is the most important thing to get right.* See [`requirements-working.txt`](requirements-working.txt) and the [reproduction log](docs/project-log/2026-06-25-Stage-1-Reproduction-Log.md).
 
@@ -119,7 +119,7 @@ Swapping the target with another object drops success from **80% to 0/20**; movi
 └── vlas/                  Vendored third-party model code (LeRobot, OpenVLA-OFT)
 ```
 
-## How the Study Was Organized
+## How the Summer Study Was Organized
 
 | Stage | Goal | Status |
 |---|---|---|
@@ -190,12 +190,14 @@ Full guides, including a UR5 server config: [`docs/setup/Server-Setup.md`](docs/
 | The scripts used on the lab server (sweep launchers, GPU watcher) | [`tools/lab-server/README.md`](tools/lab-server/README.md) |
 | Everything else, indexed | [`docs/README.md`](docs/README.md) |
 
-The sweep and scene tooling was developed on the lab's shared server and added here afterwards. It has been checked to compile, but running it needs a GPU, the model server and LIBERO. The sweep logs (about 102 GB) stay on the lab server, so the **results and evidence** are in [`research/`](research/summer-failure-analysis/README.md).
+The sweep and scene tooling was developed on the lab's shared server and added here afterwards. It has been checked to compile, but running it needs a GPU, the model server and LIBERO. The sweep logs (about 102 GB) stay on the lab server, so the **results and evidence** are in [`research/summer-failure-analysis/`](research/summer-failure-analysis/README.md).
 
 ## Limitations
 
+These limits apply to the summer study. The spring caveats are in [its section](#spring-research-robustness-on-libero-plus) above.
+
 - **One model, one benchmark.** All results are for π0 on LIBERO-Object and do not show that other VLA models or benchmarks behave the same way.
-- **Stage 3 is the newest and thinnest evidence.** It uses 20 episodes per condition (the earlier sweeps use 100), and its scripts were written from scratch this summer without an independent review. The tooling here has only been checked to compile.
+- **Stage 3 is the newest and thinnest evidence.** It uses 20 episodes per condition (the earlier sweeps use 100), and its scripts were written from scratch in summer 2026 without an independent review. The tooling here has only been checked to compile.
 - **Attention is a clue, not proof.** It has not yet been recorded during the swap condition, so it is not known whether attention follows the target to its new position.
 - **Run-to-run noise.** Clean baselines were 84%, 86% and 87%, and each sweep used a single seed.
 - **State is partly recoverable from the wrist camera**, so a small drop under state noise would not alone prove the model ignores state.
