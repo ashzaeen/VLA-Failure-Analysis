@@ -50,4 +50,4 @@ Stages 1–3 are complete and were presented in the exit presentation. Stage 4 (
 
 ## Credits
 
-Work by **Ashzaeen Fatmi Khan** in the Robotic Vision Laboratory at UT Arlington, advised by **Dr. William Beksi**, with **Zongyao Lyu** as graduate mentor. The model is π0 from Physical Intelligence; the benchmark is LIBERO. See [`Literature.md`](../Literature.md).
+Work by **Ashzaeen Fatmi Khan** in the Robotic Vision Laboratory at UT Arlington, advised by **Dr. William Beksi**, with **Dr. Zongyao Lyu** as graduate mentor. The model is π0 from Physical Intelligence; the benchmark is LIBERO. See [`Literature.md`](../Literature.md).

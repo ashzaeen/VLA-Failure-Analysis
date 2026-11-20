@@ -204,7 +204,7 @@ The sweep and scene tooling was developed on the lab's shared server and added h
 
 ## Credits and License
 
-Work by **Ashzaeen Fatmi Khan** in the **Robotic Vision Laboratory, University of Texas at Arlington**, advised by **Dr. William Beksi**, with **Zongyao Lyu** as graduate mentor. The preliminary pipeline and experiments this work extends came from the lab. The model is **π0** from Physical Intelligence; the benchmark is **LIBERO**. Papers this work builds on are in [`research/Literature.md`](research/Literature.md).
+Work by **Ashzaeen Fatmi Khan** in the **Robotic Vision Laboratory, University of Texas at Arlington**, advised by **Dr. William Beksi**, with **Dr. Zongyao Lyu** as graduate mentor. The preliminary pipeline and experiments this work extends came from the lab. The model is **π0** from Physical Intelligence; the benchmark is **LIBERO**. Papers this work builds on are in [`research/Literature.md`](research/Literature.md).
 
 **License.** Original work in this repository is released under the [MIT License](LICENSE). Third-party code vendored under [`vlas/`](vlas/) keeps its own license: LeRobot is Apache 2.0 ([`vlas/lerobot/LICENSE`](vlas/lerobot/LICENSE)), and the OpenVLA-OFT files are copied from [moojink/openvla-oft](https://github.com/moojink/openvla-oft) and remain under that project's terms.
 
