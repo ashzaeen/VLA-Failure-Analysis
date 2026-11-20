@@ -1,6 +1,6 @@
 # Spring 2026: Robustness Evaluation on LIBERO-plus
 
-The spring project evaluated the zero-shot robustness of π0 against the LIBERO-plus benchmark, which adds controlled perturbations on a difficulty scale. It was presented at the **UTA College of Engineering Innovation Day (April 14, 2026)**, and is the starting point for the summer failure analysis.
+The spring project evaluated the zero-shot robustness of π0 against the LIBERO-plus benchmark, which adds controlled perturbations on a difficulty scale. It was presented as a poster at the **CRA Undergraduate Conference**, and is the starting point for the summer failure analysis.
 
 ## Result in One Table
 
@@ -20,7 +20,7 @@ The model survived having **objects** moved but not the **robot or camera**, whi
 |---|---|
 | [`Proposal.pdf`](Proposal.pdf) | Project proposal: *Robustness and Sensitivity Analysis of Vision-Language-Action Models via Multi-Modal Perturbation* |
 | [`Abstract.pdf`](Abstract.pdf) | Abstract |
-| [`Innovation-Day-Poster.pdf`](Innovation-Day-Poster.pdf) | The Innovation Day poster |
+| [`Research-Poster.pdf`](Research-Poster.pdf) | The research poster, presented at the CRA Undergraduate Conference |
 | [`code/run_robustness_eval.py`](code/run_robustness_eval.py) | Evaluation script: takes a task ID, perturbation type and intensity, and runs the LIBERO rollout |
 | [`code/perturbations.py`](code/perturbations.py) and [`code/perturbations.json`](code/perturbations.json) | Linguistic perturbations (verbosity, syntax, synonym) looked up per task |
 

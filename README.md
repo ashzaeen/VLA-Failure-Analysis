@@ -26,7 +26,7 @@ This repository holds two studies of the vision-language-action model **π0**, b
 
 ## Spring Research: Robustness on LIBERO-plus
 
-The spring study was smaller. It tested π0, zero-shot, on LIBERO-plus, a benchmark that adds controlled perturbations on a difficulty scale, and it was presented at the UTA College of Engineering Innovation Day on April 14, 2026.
+The spring study was smaller. It tested π0, zero-shot, on LIBERO-plus, a benchmark that adds controlled perturbations on a difficulty scale, and it was presented as a poster at the CRA Undergraduate Conference.
 
 | Perturbation | Result |
 |---|---|
